@@ -1,5 +1,4 @@
 
-from hand import Hand
 from strategy import Strategy
 from enum import Enum
 
@@ -30,4 +29,11 @@ class Player:
     def discard_hands(self):
         self.hands = []
         self.completed_hands = []
+
+
+class Hand:
+    def __init__(self,cards,bet):
+        self.cards = cards
+        self.bet = bet
+        self.complete = False
 

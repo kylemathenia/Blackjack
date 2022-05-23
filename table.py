@@ -1,5 +1,4 @@
 
-from shoe import Shoe
 from player import Player
 from player import StrategyOptions
 import logging
@@ -28,6 +27,7 @@ class ActionOptions(Enum):
     HIT = 2
     SPLIT = 3
     DOUBLE_DOWN = 4
+
 
 class Table:
     def __init__(self,players,strategies,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,blackjack_multiple=1.5,hit_soft_17=True):
@@ -71,7 +71,9 @@ class Table:
                 self.autoplay_hand(player,hand)
 
     def autoplay_hand(self,player,hand):
-        action = self.get_action(player, hand)
+        # TODO need to consider aces as two values.
+        action = player.strategy.decide_action(player, hand, self.dealer, self.shoe)
+        self.check_if_action_legal(player, action)
         if action == ActionOptions.STAND:
             hand.complete = True
         elif action == ActionOptions.HIT:
@@ -85,14 +87,9 @@ class Table:
             hand.cards.append(self.shoe.draw_one())
             hand.complete = True
         elif action == ActionOptions.SPLIT:
-            cards=hand.cards
             self.create_split_hands(player, hand)
             self.autoplay_hands(player)
 
-    def get_action(self,player,hand):
-        action = player.strategy.decide_action(player, hand, self.dealer, self.shoe)
-        self.check_if_action_legal(player, action)
-        return action
 
     def create_split_hands(self,player,hand):
         split_card = hand.cards.pop()
@@ -100,7 +97,6 @@ class Table:
         hand.cards.append(self.shoe.draw_one())
         # Create a new hand with the split card.
         new_card = self.shoe.draw_one()
-        #TODO need to confirm the bet size is the same as the original hand for the new hand.
         player.hand_init([split_card,new_card], bet=hand.bet)
         if split_card == Cards.ACE: # If splitting aces, you only get one card.
             hand.complete = True
@@ -113,6 +109,7 @@ class Table:
 
     def payout(self):
         """Settle up winnings and losings."""
+        # TODO need to consider aces as two values...
         dealers_hand = sum(self.dealer.hands[0])
         for player in self.players:
             for hand in player.hands:
@@ -160,4 +157,34 @@ class Table:
     def check_if_action_legal(self, player, action):
         # TODO
         pass
+
+
+
+
+
+
+
+class Shoe:
+    def __init__(self,num_decks,shoe_shuffle_depth):
+        self.num_decks = num_decks
+        self.shoe_shuffle_depth = shoe_shuffle_depth
+        self.single_suit = set([Cards.ACE,Cards.ONE,Cards.TWO,Cards.THREE,Cards.FOUR,Cards.FIVE,Cards.SIX,Cards.SEVEN,Cards.EIGHT,Cards.NINE,Cards.TEN,Cards.JACK,Cards.QUEEN,Cards.KING])
+        self.shoe = []
+        self.refill()
+
+    def draw_one(self):
+        #TODO
+        pass
+
+    def draw_two(self):
+        #TODO
+        pass
+
+    def refill(self):
+        all_cards = []
+        for i in range(self.num_decks):
+            for j in range(4):
+                all_cards = all_cards + list(self.single_suit)
+
+        # TODO pick random cards out of all_cards to go into shoe.
 
