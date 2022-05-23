@@ -14,6 +14,6 @@ class Strategy:
         if self.strategy == StrategyOptions.BASIC:
             return standard_bet
 
-    def decide_action(self,player,dealer,shoe):
+    def decide_action(self,player,hand,dealer,shoe):
         # TODO
         pass

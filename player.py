@@ -29,4 +29,5 @@ class Player:
 
     def discard_hands(self):
         self.hands = []
+        self.completed_hands = []
 
