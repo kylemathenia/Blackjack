@@ -41,7 +41,7 @@ class Player:
         else: return False
 
     def show_status(self):
-        print("\nPlayer: {}\nMoney: ${}\nWinnings: ${}\n".format(
+        print("\nPlayer: {}\nMoney: ${}\nWinnings: ${}".format(
             self.name,self.money,self.money-self.__starting_money))
 
 

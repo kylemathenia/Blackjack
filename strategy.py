@@ -18,12 +18,12 @@ def decide_action(player,hand,dealer,shoe,table):
         return dealer_strategy_action(hand,table)
 
 def basic_strategy_action(player,hand,dealer,table):
-    dealer_card = dealer.hand.cards[0]
+    dealer_card = dealer.hands[0].cards[0]
     if hand.is_double and len(player.hands)<3:
         double_card_index = hand.cards[0].card_value[-1]
         if split_map[dealer_card][double_card_index]:
             return AO.SPLIT
-    elif hand.hand_soft:
+    if hand.hand_soft:
         action = basic_soft_hand_map[dealer_card][hand.soft_total_low]
     else:
         action = basic_hard_hand_map[dealer_card][hand.hard_sum]

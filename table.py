@@ -3,7 +3,6 @@ from player import Player
 from options import StrategyOptions,ActionOptions,Cards
 from shoe import Shoe
 import support
-
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
