@@ -72,6 +72,8 @@ def show_result(dealer,players,table):
         input("\nPress <Enter>")
 
 def prompts_exit_game():
+    #TODO Keep track of player stats throughout the game a print them here. Highest money achieved. Num rounds played.
+    #winning percentage, etc.
     print("\nExiting game.\n")
 
 
