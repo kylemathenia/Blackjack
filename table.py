@@ -1,95 +1,90 @@
 
 from player import Player
-from player import StrategyOptions
+from options import StrategyOptions,ActionOptions,Cards
+from shoe import Shoe
+import support
+
 import logging
-from enum import Enum
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-class Cards(Enum):
-    ACE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-    SIX = 6
-    SEVEN = 7
-    EIGHT = 8
-    NINE = 9
-    TEN = 10
-    JACK = 11
-    QUEEN = 12
-    KING = 13
-
-class ActionOptions(Enum):
-    STAND = 1
-    HIT = 2
-    SPLIT = 3
-    DOUBLE_DOWN = 4
-
-
 class Table:
-    def __init__(self,players,strategies,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,blackjack_multiple=1.5,hit_soft_17=True):
+    def __init__(self,players,strategies,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,
+                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False):
         self.players = players # Set of player objects
-        self.dealer = Player.Player(StrategyOptions.DEALER)
+        self.dealer = Player(StrategyOptions.DEALER)
         self.shoe = Shoe(num_decks,shoe_shuffle_depth)
         self.min_bet = min_bet
         self.max_bet = max_bet
         self.blackjack_prize_mult = blackjack_multiple
         self.hit_soft_17 = hit_soft_17
+        self.double_after_split = double_after_split
+        self.autoplay = autoplay
 
-    def play_round(self,autoplay=True):
+    ####################################################################################################################
+    # Main
+    ####################################################################################################################
+
+    def play_round(self,autoplay=None):
+        if autoplay is not None:
+            self.autoplay = autoplay
+
         self.check_if_players_legal()
         self.make_bets()
         self.deal()
         for player in self.players:
-            if autoplay:
+            if autoplay or not player.play_as:
                 self.autoplay_hands(player)
             else:
-                self.play_hand(player)
+                self.play_hands(player)
         self.autoplay_hands(self.dealer)
         self.payout()
         self.cleanup_round()
 
-
+    ####################################################################################################################
+    # Support
+    ####################################################################################################################
 
     def make_bets(self):
         for player in self.players:
-            player.make_bet(self.shoe)
+            player.make_bet(self.shoe,self)
 
     def deal(self):
-        cards = self.shoe.draw_two()
-        self.dealer.hand_init(cards)
+        self.dealer.hand_init(self.shoe.draw_two())
         for player in self.players:
-            cards = self.shoe.draw_two()
-            player.hand_init(cards)
+            player.hand_init(self.shoe.draw_two())
 
-    def autoplay_hands(self,player):
+    def play_hands(self,player):
         for hand in player.hands:
             if not hand.complete:
-                self.autoplay_hand(player,hand)
+                self.play_hand(player,hand)
 
-    def autoplay_hand(self,player,hand):
-        # TODO need to consider aces as two values.
-        action = player.strategy.decide_action(player, hand, self.dealer, self.shoe)
+    def play_hand(self,player,hand):
+        if player.play_as:
+            support.prompt_start_hand(player,hand)
+            action = support.prompt_play_hand(player,hand,self.dealer)
+        else:
+            action = player.decide_action(hand, self.dealer, self.shoe, self)
         self.check_if_action_legal(player, action)
+        self.do_action(action,player,hand)
+
+    def do_action(self,action,player,hand):
         if action == ActionOptions.STAND:
             hand.complete = True
         elif action == ActionOptions.HIT:
             hand.cards.append(self.shoe.draw_one())
-            if sum(hand.cards) > 21:  # Bust
+            if hand.best_value > 21:
                 hand.complete = True
             else:
-                self.autoplay_hand(self,player,hand)
+                self.play_hand(self,player,hand)
         elif action == ActionOptions.DOUBLE_DOWN:
             hand.bet += hand.bet
             hand.cards.append(self.shoe.draw_one())
             hand.complete = True
         elif action == ActionOptions.SPLIT:
             self.create_split_hands(player, hand)
-            self.autoplay_hands(player)
-
+            self.play_hands(player)
 
     def create_split_hands(self,player,hand):
         split_card = hand.cards.pop()
@@ -103,32 +98,36 @@ class Table:
             new_hand = player.hands[-1]
             new_hand.complete = True
 
-    def play_hand(self, player):
-        # TODO
-        logging.debug("\nplay_hand() has not been implemented yet.\n")
 
     def payout(self):
         """Settle up winnings and losings."""
-        # TODO need to consider aces as two values...
-        dealers_hand = sum(self.dealer.hands[0])
+        dealers_hand = self.dealer.hands[0]
+        dealers_hand_value = dealers_hand.best_value
         for player in self.players:
             for hand in player.hands:
-                hand_total = sum(hand)
-                if hand_total > 21:
+                if hand.best_value > 21:
                     player.money -= hand.bet
-                elif hand_total == 21:
+                elif hand.best_value == 21:
                     player.money += (hand.bet*self.blackjack_prize_mult)
-                elif hand_total > dealers_hand:
+                elif hand.best_value > dealers_hand_value:
                     player.money += hand.bet
-                elif hand_total < dealers_hand:
+                elif hand.best_value < dealers_hand_value:
                     player.money -= hand.bet
-                elif hand_total == dealers_hand:
+                elif hand.best_value == dealers_hand_value:
                     continue
 
     def cleanup_round(self):
         for player in self.players:
             player.discard_hands()
         self.dealer.discard_hands()
+        if not self.autoplay:
+            self.show_players()
+
+    def show_players(self):
+        print("\n\n#####     CURRENT TABLE STATUS     #####\n")
+        for player in self.players:
+            player.show_status()
+
 
 
     ####################################################################################################################
@@ -156,35 +155,10 @@ class Table:
 
     def check_if_action_legal(self, player, action):
         # TODO
+        # Player cannot double down after already hitting.
         pass
 
 
 
 
-
-
-
-class Shoe:
-    def __init__(self,num_decks,shoe_shuffle_depth):
-        self.num_decks = num_decks
-        self.shoe_shuffle_depth = shoe_shuffle_depth
-        self.single_suit = set([Cards.ACE,Cards.ONE,Cards.TWO,Cards.THREE,Cards.FOUR,Cards.FIVE,Cards.SIX,Cards.SEVEN,Cards.EIGHT,Cards.NINE,Cards.TEN,Cards.JACK,Cards.QUEEN,Cards.KING])
-        self.shoe = []
-        self.refill()
-
-    def draw_one(self):
-        #TODO
-        pass
-
-    def draw_two(self):
-        #TODO
-        pass
-
-    def refill(self):
-        all_cards = []
-        for i in range(self.num_decks):
-            for j in range(4):
-                all_cards = all_cards + list(self.single_suit)
-
-        # TODO pick random cards out of all_cards to go into shoe.
 
