@@ -12,7 +12,7 @@ class Shoe:
         self.refill()
 
     def draw_one(self):
-        if self.cards_left <= self.shoe_shuffle_depth:
+        if self.cards_left <= self.shoe_refill_depth:
             self.refill()
         return self.shoe.pop()
 

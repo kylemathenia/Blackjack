@@ -37,12 +37,12 @@ class Player:
 
     @property
     def has_split_hands(self):
-        if len(self.hands>1): return True
+        if len(self.hands)>1: return True
         else: return False
 
     def show_status(self):
-        print("\nPlayer: {}\nStarting Money: ${}\nCurrent Money: ${}, Winnings: ${}\n".format(
-            self.name,self.__starting_money,self.money,self.money-self.__starting_money))
+        print("\nPlayer: {}\nMoney: ${}\nWinnings: ${}\n".format(
+            self.name,self.money,self.money-self.__starting_money))
 
 
 

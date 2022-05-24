@@ -8,18 +8,18 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 def decide_bet(player,shoe,standard_bet):
     """Place bets for a hand. Each hand (if their are multiple) has a bet associated with it."""
-    if player.strategy is StrategyOptions.BASIC:
+    if player.strategy == StrategyOptions.BASIC:
         return standard_bet
 
 def decide_action(player,hand,dealer,shoe,table):
-    if player.strategy is StrategyOptions.BASIC:
+    if player.strategy == StrategyOptions.BASIC:
         return basic_strategy_action(player,hand,dealer,table)
-    if player.strategy is StrategyOptions.DEALER:
+    if player.strategy == StrategyOptions.DEALER:
         return dealer_strategy_action(hand,table)
 
 def basic_strategy_action(player,hand,dealer,table):
     dealer_card = dealer.hand.cards[0]
-    if hand.is_double:
+    if hand.is_double and len(player.hands)<3:
         double_card_index = hand.cards[0].card_value[-1]
         if split_map[dealer_card][double_card_index]:
             return AO.SPLIT
@@ -47,17 +47,19 @@ def dealer_strategy_action(hand,table):
 
 def check_double_down(action,hand,table,player):
     """Checks the action to see if it is a double down variety. Modifies action if double down isn't legal."""
-    if action is not AO.DD_OR_HIT or action is not AO.DD_OR_STAND:
+    if action != AO.DD_OR_HIT or action != AO.DD_OR_STAND:
         return action
     elif len(hand.cards) > 2:
         return no_double_down_action(action)
     elif player.has_split_hands and not table.double_after_split:
         return no_double_down_action(action)
+    elif hand.bet*2 > player.money:
+        return no_double_down_action(action)
     else:
         return AO.DOUBLE_DOWN
 
 def no_double_down_action(action):
-    if action is AO.DD_OR_STAND: return AO.STAND
+    if action == AO.DD_OR_STAND: return AO.STAND
     else: return AO.HIT
 
 

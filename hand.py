@@ -18,7 +18,7 @@ class Hand:
 
     @property
     def face_up_cards(self):
-        if self.player.strategy is StrategyOptions.DEALER:
+        if self.player.strategy == StrategyOptions.DEALER:
             return [self.cards[0]]
         else:
             return self.cards
@@ -35,9 +35,9 @@ class Hand:
     def hard_sum(self):
         """Returns the combined value of the non-ace cards, plus aces counted as ones."""
         value = 0
-        for card in self.hand:
-            if card is not Cards.ACE:
-                value += card.card_value
+        for card in self.cards:
+            if card != Cards.ACE:
+                value += card.card_value[0]
         return value + self.cards.count(Cards.ACE)
 
     @property
@@ -50,11 +50,20 @@ class Hand:
             return False
 
     @property
+    def hard_sum_excluding_aces(self):
+        """Returns the combined value of the non-ace cards, plus aces counted as ones."""
+        value = 0
+        for card in self.cards:
+            if card != Cards.ACE:
+                value += card.card_value[0]
+        return value
+
+    @property
     def soft_total_without_ace(self):
         """Returns the soft total of the hand excluding one ace. All additional aces after the first ace are counted
         as ones, because two aces would be 22, a bust."""
         num_aces = self.cards.count(Cards.ACE)
-        return self.hard_sum + num_aces - 1
+        return self.hard_sum_excluding_aces + num_aces - 1
 
     @property
     def soft_total_low(self):
