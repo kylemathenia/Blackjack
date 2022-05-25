@@ -120,7 +120,7 @@ class Table:
         dealers_hand_value = dealers_hand.best_value
         if hand.best_value > 21:
             return -hand.bet
-        elif hand.best_value == 21:
+        elif hand.best_value == 21 and dealers_hand_value != 21:
             return hand.bet*self.blackjack_prize_mult
         elif dealers_hand_value > 21:
             return hand.bet

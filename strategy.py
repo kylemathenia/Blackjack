@@ -7,7 +7,7 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 
 def decide_bet(player,shoe,standard_bet):
-    """Place bets for a hand. Each hand (if their are multiple) has a bet associated with it."""
+    """Place bets for a hand. Each hand (if there are multiple) has a bet associated with it."""
     if player.strategy == StrategyOptions.BASIC:
         return standard_bet
 
