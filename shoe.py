@@ -18,14 +18,14 @@ class Shoe:
         if self.cards_left <= self.shoe_refill_depth:
             self.refill()
         card = self.shoe.pop()
-        self.played = self.played.append(card)
+        self.played.append(card)
         return card
 
     def draw_two(self):
         card1 = self.draw_one()
         card2 = self.draw_one()
-        self.played = self.played.append(card1)
-        self.played = self.played.append(card2)
+        self.played.append(card1)
+        self.played.append(card2)
         return [card1,card2]
 
     def refill(self):
@@ -41,6 +41,7 @@ class Shoe:
             self.shoe.append(card)
 
     ## only works for one deck
+    @property
     def true_count(self):
         count = 0
         for card in self.played:
