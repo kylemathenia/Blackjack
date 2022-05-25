@@ -12,15 +12,20 @@ class Shoe:
         self.single_suit = [Cards.ACE,Cards.TWO,Cards.THREE,Cards.FOUR,Cards.FIVE,Cards.SIX,Cards.SEVEN,Cards.EIGHT,Cards.NINE,Cards.TEN,Cards.JACK,Cards.QUEEN,Cards.KING]
         self.shoe = []
         self.refill()
+        self.played = []
 
     def draw_one(self):
         if self.cards_left <= self.shoe_refill_depth:
             self.refill()
-        return self.shoe.pop()
+        card = self.shoe.pop()
+        self.played = self.played.append(card)
+        return card
 
     def draw_two(self):
         card1 = self.draw_one()
         card2 = self.draw_one()
+        self.played = self.played.append(card1)
+        self.played = self.played.append(card2)
         return [card1,card2]
 
     def refill(self):
@@ -30,9 +35,20 @@ class Shoe:
             for suit in range(4):
                 all_cards += list(self.single_suit)
         self.shoe = []
+        self.played = []
         for card_num in range(len(all_cards)):
             card = all_cards.pop(random.randrange(len(all_cards)))
             self.shoe.append(card)
+
+    ## only works for one deck
+    def true_count(self):
+        count = 0
+        for card in self.played:
+            if card == 10:
+                count += -1
+            if card == 2 or 3 or 4 or 5 or 6:
+                count += 1
+        return count
 
     @property
     def cards_left(self):

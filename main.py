@@ -4,7 +4,7 @@ from player import Player
 from options import StrategyOptions
 
 # Create players
-jake = Player('Jake',StrategyOptions.BASIC,money=900,standard_bet=25,play_as=False)
+jake = Player('Jake',StrategyOptions.Hi_low_count,money=900,standard_bet=25,play_as=True)
 kyle = Player('Kyle',StrategyOptions.BASIC,money=100,standard_bet=5,play_as=False)
 
 # Create table
