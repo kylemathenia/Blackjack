@@ -45,9 +45,10 @@ class Shoe:
     def true_count(self):
         count = 0
         for card in self.played:
+            card ==
             if card == 10:
                 count += -1
-            if card == 2 or 3 or 4 or 5 or 6:
+            if card ==
                 count += 1
         return count
 

@@ -2,7 +2,6 @@
 
 import pandas as pd
 
-import shoe
 from options import ActionOptions as AO
 from options import StrategyOptions,Cards
 pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -12,9 +11,12 @@ def decide_bet(player,shoe,standard_bet):
     """Place bets for a hand. Each hand (if there are multiple) has a bet associated with it."""
     if player.strategy == StrategyOptions.BASIC:
         return standard_bet
+    ## used linear function which is not optitimal
     if player.strategy == StrategyOptions.HI_LOW_COUNT:
-        #TODO Change from standard bet.
-        return standard_bet
+        if shoe.true_count > 2:
+            return standard_bet * shoe.true_count
+        else:
+            return standard_bet
 
 def decide_action(player,hand,dealer,shoe,table):
     if player.strategy == StrategyOptions.BASIC:
@@ -45,32 +47,33 @@ def deviation_strategy_action(player, hand, dealer, table):
         split_deviation_entry = deviations_split_map[dealer_card][double_card_index]
         if split_deviation_entry[0] and len(split_deviation_entry) == 1:
             return AO.SPLIT
-        if len(split_deviation_entry) == 2:
+        if len(split_deviation_entry) == 3:
             dev_count = split_deviation_entry[-1]
             if dev_count <= true_count:
                 return AO.SPLIT
     if hand.hand_soft:
-        if len(deviations_soft_hand_map[dealer_card][hand.soft_total_low]) == 2:
+        if len(deviations_soft_hand_map[dealer_card][hand.soft_total_low]) == 3:
             action_list = deviations_soft_hand_map[dealer_card][hand.soft_total_low]
-            if true_count >= action_list[1]:
+            if true_count >= action_list[2]:
                 action = action_list[0]
+            else:
+                action = action_list[1]
         else:
             action = deviations_soft_hand_map[dealer_card][hand.soft_total_low][0]
     else:
-        if len(deviations_basic_hard_hand_map[dealer_card][hand.hard_sum]) == 2:
+        if len(deviations_basic_hard_hand_map[dealer_card][hand.hard_sum]) == 3:
             action_list = deviations_basic_hard_hand_map[dealer_card][hand.hard_sum]
-            deviation = action_list[1]
+            deviation = action_list[2]
             if deviation < 0:
                 if true_count <= deviation:
                     action = action_list[0]
                 else:
-                    #TODO what to do when true count is greater than deviation
-                    #Do this for other ones too.
-                    action = action_list[0]
-                    pass
+                    action = action_list[1]
             if deviation > 0:
-                if true_count >= action_list[1]:
+                if true_count >= deviation:
                     action = action_list[0]
+                else:
+                    action = action_list[1]
         else:
             action = deviations_basic_hard_hand_map[dealer_card][hand.hard_sum][0]
     action = check_double_down(action,hand,table,player)
@@ -229,19 +232,19 @@ def get_deviations_basic_hard_hand_map():
         Cards.KING: [[AO.HIT]],
         Cards.ACE: [[AO.HIT]]})
     hard_hand_df = pd.DataFrame({
-        Cards.TWO: [[AO.HIT], [AO.DD_OR_HIT, 1], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND, 3], [AO.HIT,-1], [AO.STAND], [AO.STAND], [AO.STAND]],
-        Cards.THREE: [[AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND,2], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
-        Cards.FOUR: [[AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND,-.5], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
+        Cards.TWO: [[AO.HIT], [AO.DD_OR_HIT, AO.HIT, 1], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND, AO.HIT, 3], [AO.HIT, AO.STAND,-1], [AO.STAND], [AO.STAND], [AO.STAND]],
+        Cards.THREE: [[AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND, AO.HIT, 2], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
+        Cards.FOUR: [[AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT, AO.STAND,-.5], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
         Cards.FIVE: [[AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
-        Cards.SIX: [[AO.DD_OR_HIT, 2], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
-        Cards.SEVEN: [[AO.HIT], [AO.DD_OR_HIT, 3], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT]],
+        Cards.SIX: [[AO.DD_OR_HIT,AO.HIT, 2], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
+        Cards.SEVEN: [[AO.HIT], [AO.DD_OR_HIT, AO.HIT, 3], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT]],
         Cards.EIGHT: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT]],
-        Cards.NINE: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT],[ AO.HIT], [AO.HIT], [AO.STAND,4]],
-        Cards.TEN: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,4], [AO.STAND,.5]],
-        Cards.JACK: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,4], [AO.STAND,.5]],
-        Cards.QUEEN: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,4], [AO.STAND,.5]],
-        Cards.KING: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,4], [AO.STAND,.5]],
-        Cards.ACE: [[AO.HIT],[ AO.HIT], [AO.DD_OR_HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT]]})
+        Cards.NINE: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT],[ AO.HIT], [AO.HIT], [AO.STAND, AO.HIT, 4]],
+        Cards.TEN: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,AO.HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,AO.HIT,4], [AO.STAND, AO.HIT,.5]],
+        Cards.JACK: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,AO.HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,AO.HIT,4], [AO.STAND, AO.HIT,.5]],
+        Cards.QUEEN: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,AO.HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,AO.HIT,4], [AO.STAND, AO.HIT,.5]],
+        Cards.KING: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT,AO.HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND,AO.HIT,4], [AO.STAND, AO.HIT,.5]],
+        Cards.ACE: [[AO.HIT],[ AO.HIT], [AO.DD_OR_HIT,AO.HIT,4], [AO.DD_OR_HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT]]})
     df_above_16 = pd.DataFrame({
         Cards.TWO: [[AO.STAND]],
         Cards.THREE: [[AO.STAND]],
@@ -268,10 +271,10 @@ def get_deviations_basic_hard_hand_map():
 def get_deviations_soft_hand_map():
     """Basic strategy according to https://www.blackjackapprenticeship.com/blackjack-strategy-charts/"""
     df = pd.DataFrame({
-        Cards.TWO: [[AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.DD_OR_HIT, 1], [AO.DD_OR_STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
+        Cards.TWO: [[AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.DD_OR_HIT,AO.HIT, 1], [AO.DD_OR_STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
         Cards.THREE: [[AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
-        Cards.FOUR: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.DD_OR_STAND, 3], [AO.STAND], [AO.STAND]],
-        Cards.FIVE: [[AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.DD_OR_STAND, 1], [AO.STAND], [AO.STAND]],
+        Cards.FOUR: [[AO.HIT], [AO.HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.DD_OR_STAND,AO.STAND, 3], [AO.STAND], [AO.STAND]],
+        Cards.FIVE: [[AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.DD_OR_STAND, AO.STAND, 1], [AO.STAND], [AO.STAND]],
         Cards.SIX: [[AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_HIT], [AO.DD_OR_STAND], [AO.DD_OR_STAND], [AO.STAND], [AO.STAND]],
         Cards.SEVEN: [[AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.HIT], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
         Cards.EIGHT: [[AO.HIT], [AO.HIT], [AO.HIT],[ AO.HIT], [AO.HIT], [AO.STAND], [AO.STAND], [AO.STAND], [AO.STAND]],
@@ -289,9 +292,9 @@ def get_deviations_split_map():
     df = pd.DataFrame({
         Cards.TWO:      [[False], [False], [False], [False], [False], [True], [True], [True], [False], [True]],
         Cards.THREE:    [[False], [False], [False], [False], [True], [True], [True], [True], [False], [True]],
-        Cards.FOUR:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,6], [True]],
-        Cards.FIVE:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,5], [True]],
-        Cards.SIX:      [[True], [True], [False], [False], [True], [True], [True], [True], [True,4], [True]],
+        Cards.FOUR:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,6], [True]],
+        Cards.FIVE:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,5], [True]],
+        Cards.SIX:      [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,4], [True]],
         Cards.SEVEN:    [[True], [True], [False], [False], [False], [True], [True], [False], [False], [True]],
         Cards.EIGHT:    [[False], [False], [False], [False], [False], [False], [True], [True], [False], [True]],
         Cards.NINE:     [[False], [False], [False], [False], [False], [False], [True], [True], [False], [True]],
