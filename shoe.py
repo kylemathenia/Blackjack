@@ -24,8 +24,6 @@ class Shoe:
     def draw_two(self):
         card1 = self.draw_one()
         card2 = self.draw_one()
-        self.played.append(card1)
-        self.played.append(card2)
         return [card1,card2]
 
     def refill(self):
@@ -45,7 +43,7 @@ class Shoe:
     def true_count(self):
         count = 0
         for card in self.played:
-            if card.card_value[0] == 10 or card is Cards.ACE:
+            if card.card_value[0] == 10 or card == Cards.ACE:
                 count -= 1
             elif card.card_value[0] <= 6:
                 count += 1

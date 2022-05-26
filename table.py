@@ -121,8 +121,8 @@ class Table:
         dealers_hand_value = dealers_hand.best_value
         if hand.best_value > 21:
             return -hand.bet
-        elif hand.best_value == 21 and dealers_hand_value != 21:
-            return hand.bet*self.blackjack_prize_mult
+        elif hand.best_value == 21: ########## removed dealers_hand_value != 21 because dealer can still get 21 after the first to cards but black jack should still be rewarded
+            return hand.bet*self.blackjack_prize_mult ########### does this always give out black jack if player gets to 21???????????
         elif dealers_hand_value > 21:
             return hand.bet
         elif hand.best_value > dealers_hand_value:

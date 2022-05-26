@@ -14,7 +14,7 @@ def decide_bet(player,shoe,table):
     ## used linear function which is not optitimal
     elif player.strategy == StrategyOptions.HI_LOW_COUNT:
         if shoe.true_count > 2:
-            bet = player.standard_bet * shoe.true_count
+            bet = player.standard_bet * (shoe.true_count + 1)
         else:
             bet = player.standard_bet
     return change_bet_if_poor(bet,player,table)
@@ -31,7 +31,7 @@ def decide_action(player,hand,dealer,shoe,table):
     if player.strategy == StrategyOptions.DEALER:
         return dealer_strategy_action(hand,table)
     if player.strategy == StrategyOptions.HI_LOW_COUNT:
-        return deviation_strategy_action(player,hand,dealer,table)
+        return basic_strategy_action(player,hand,dealer,table)   ####################### change to add back deviations
 
 def basic_strategy_action(player,hand,dealer,table):
     dealer_card = dealer.hands[0].cards[0]
@@ -89,7 +89,7 @@ def deviation_strategy_action(player, hand, dealer, table):
 def dealer_strategy_action(hand,table):
     if hand.best_value > 17:
         return AO.STAND
-    elif hand.hand_soft and hand.soft_total_high == 17:
+    elif hand.hand_soft and hand.soft_total_high == 17: ######## this is set to a dealer H17 rules
         if table.hit_soft_17:
             return AO.HIT
         else:
@@ -204,12 +204,12 @@ def get_basic_soft_hand_map():
     return dict(df)
 
 def get_split_map():
-    """Basic strategy according to https://www.blackjackapprenticeship.com/blackjack-strategy-charts/"""
+    """Basic strategy according to https://www.blackjackapprenticeship.com/blackjack-strategy-charts/""" ###### changed Y/N to True
     df = pd.DataFrame({
-        Cards.TWO: [False, False, False, False, False, True, True, True, False, True],
-        Cards.THREE: [False, False, False, False, True, True, True, True, False, True],
-        Cards.FOUR: [True, True, False, False, True, True, True, True, False, True],
-        Cards.FIVE: [True, True, False, False, True, True, True, True, False, True],
+        Cards.TWO: [True, True, False, False, True, True, True, True, False, True],
+        Cards.THREE: [True, True, False, False, True, True, True, True, False, True],
+        Cards.FOUR: [True, True, True, False, True, True, True, True, False, True],
+        Cards.FIVE: [True, True, True, False, True, True, True, True, False, True],
         Cards.SIX: [True, True, False, False, True, True, True, True, False, True],
         Cards.SEVEN: [True, True, False, False, False, True, True, False, False, True],
         Cards.EIGHT: [False, False, False, False, False, False, True, True, False, True],
@@ -297,11 +297,11 @@ def get_deviations_soft_hand_map():
 def get_deviations_split_map():
     """Basic strategy according to https://www.blackjackapprenticeship.com/blackjack-strategy-charts/"""
     df = pd.DataFrame({
-        Cards.TWO:      [[False], [False], [False], [False], [False], [True], [True], [True], [False], [True]],
-        Cards.THREE:    [[False], [False], [False], [False], [True], [True], [True], [True], [False], [True]],
+        Cards.TWO:      [[True], [True], [False], [False], [True], [True], [True], [True], [False], [True]],
+        Cards.THREE:    [[True], [True], [False], [False], [True], [True], [True], [True], [False], [True]],
         Cards.FOUR:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,6], [True]],
-        Cards.FIVE:     [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,5], [True]],
-        Cards.SIX:      [[True], [True], [False], [False], [True], [True], [True], [True], [True,False,4], [True]],
+        Cards.FIVE:     [[True], [True], [True], [False], [True], [True], [True], [True], [True,False,5], [True]],
+        Cards.SIX:      [[True], [True], [True], [False], [True], [True], [True], [True], [True,False,4], [True]],
         Cards.SEVEN:    [[True], [True], [False], [False], [False], [True], [True], [False], [False], [True]],
         Cards.EIGHT:    [[False], [False], [False], [False], [False], [False], [True], [True], [False], [True]],
         Cards.NINE:     [[False], [False], [False], [False], [False], [False], [True], [True], [False], [True]],
