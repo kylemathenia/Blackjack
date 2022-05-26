@@ -3,7 +3,7 @@ from options import Cards
 import random
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 class Shoe:
     def __init__(self,num_decks,shoe_refill_depth):
@@ -29,7 +29,7 @@ class Shoe:
         return [card1,card2]
 
     def refill(self):
-        logging.info("\nREFILLING SHOE\n")
+        logging.debug("\nREFILLING SHOE\n")
         all_cards = []
         for deck_num in range(self.num_decks):
             for suit in range(4):
@@ -45,7 +45,7 @@ class Shoe:
     def true_count(self):
         count = 0
         for card in self.played:
-            if card.card_value[0] == 10 or card == Cards.ACE:
+            if card.card_value[0] == 10 or card is Cards.ACE:
                 count -= 1
             elif card.card_value[0] <= 6:
                 count += 1

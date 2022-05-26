@@ -7,16 +7,23 @@ from options import StrategyOptions,Cards
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 
-def decide_bet(player,shoe,standard_bet):
+def decide_bet(player,shoe,table):
     """Place bets for a hand. Each hand (if there are multiple) has a bet associated with it."""
     if player.strategy == StrategyOptions.BASIC:
-        return standard_bet
+        bet = player.standard_bet
     ## used linear function which is not optitimal
-    if player.strategy == StrategyOptions.HI_LOW_COUNT:
+    elif player.strategy == StrategyOptions.HI_LOW_COUNT:
         if shoe.true_count > 2:
-            return standard_bet * shoe.true_count
+            bet = player.standard_bet * shoe.true_count
         else:
-            return standard_bet
+            bet = player.standard_bet
+    return change_bet_if_poor(bet,player,table)
+
+def change_bet_if_poor(bet,player,table):
+    if bet > player.money:
+        return table.min_bet
+    else:
+        return bet
 
 def decide_action(player,hand,dealer,shoe,table):
     if player.strategy == StrategyOptions.BASIC:

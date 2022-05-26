@@ -18,7 +18,13 @@ class Player:
         if self.play_as:
             self.bet_size = support.prompt_make_bet(self,table)
         else:
-            self.bet_size = strategy.decide_bet(self,shoe,self.standard_bet)
+            self.bet_size = strategy.decide_bet(self,shoe,table)
+        if self.bet_size <= self.money:
+            return False
+        else:
+            print("\n{} is trying to bet more money than they have. \n Money: {}\tBet: {}".format(
+                self.name,self.money,self.bet_size))
+            return True
 
     def hand_init(self,cards,bet=None):
         if self.strategy == StrategyOptions.DEALER:
