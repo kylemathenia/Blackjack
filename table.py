@@ -55,7 +55,8 @@ class Table:
 
     def make_bets(self):
         for player in self.players:
-            player.make_bet(self.shoe,self)
+            while player.make_bet(self.shoe,self):
+                pass
 
     def deal(self):
         self.dealer.hand_init(self.shoe.draw_two())
