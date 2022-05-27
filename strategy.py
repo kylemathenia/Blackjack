@@ -25,12 +25,12 @@ def change_bet_if_poor(bet,player,table):
     else:
         return bet
 
-def decide_action(player,hand,dealer,shoe,table):
-    if player.strategy == StrategyOptions.BASIC:
+def decide_action(player,hand,dealer,table,strategy):
+    if strategy == StrategyOptions.BASIC:
         return basic_strategy_action(player,hand,dealer,table)
-    if player.strategy == StrategyOptions.DEALER:
+    if strategy == StrategyOptions.DEALER:
         return dealer_strategy_action(hand,table)
-    if player.strategy == StrategyOptions.HI_LOW_COUNT:
+    if strategy == StrategyOptions.HI_LOW_COUNT:
         return deviation_strategy_action(player,hand,dealer,table)
 
 def basic_strategy_action(player,hand,dealer,table):
@@ -103,7 +103,7 @@ def dealer_strategy_action(hand,table):
 
 def check_double_down(action,hand,table,player):
     """Checks the action to see if it is a double down variety. Modifies action if double down isn't legal."""
-    if action != AO.DD_OR_HIT or action != AO.DD_OR_STAND:
+    if action != AO.DD_OR_HIT and action != AO.DD_OR_STAND:
         return action
     elif len(hand.cards) > 2:
         return no_double_down_action(action)

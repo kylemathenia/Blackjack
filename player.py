@@ -9,7 +9,7 @@ class Player:
         self.name = name
         self.strategy = strategy
         self.hands = []
-        self.__starting_money = money
+        self.starting_money = money
         self.money = money
         self.standard_bet = standard_bet
         self.play_as = play_as
@@ -34,8 +34,8 @@ class Player:
         else:  # This is the first hand.
             self.hands.append(Hand(self,cards,self.bet_size))
 
-    def decide_action(self,hand,dealer,shoe,table):
-        return strategy.decide_action(self,hand,dealer,shoe,table)
+    def decide_action(self,hand,dealer,table):
+        return strategy.decide_action(self,hand,dealer,table,self.strategy)
 
     def discard_hands(self):
         self.hands = []

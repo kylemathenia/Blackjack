@@ -8,6 +8,8 @@ class ActionOptions(Enum):
     DD_OR_HIT = 4
     DD_OR_STAND = 5
     DOUBLE_DOWN = 6
+    BASIC_STRATEGY = 7
+    HI_LOW_STRATEGY = 8
 
 class StrategyOptions(Enum):
     DEALER = 1

@@ -23,6 +23,13 @@ class Hand:
             return False
 
     @property
+    def hand_values(self):
+        if self.hand_soft:
+            return [self.soft_total_low,self.soft_total_high]
+        else:
+            return [self.best_value]
+
+    @property
     def face_up_cards(self):
         if self.player.strategy == StrategyOptions.DEALER:
             return [self.cards[0]]

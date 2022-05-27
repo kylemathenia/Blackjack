@@ -25,11 +25,24 @@ class Table:
     # Main
     ####################################################################################################################
     def play(self):
+        self.num_rounds = 0
         while True:
             if not self.players:
                 support.prompts_exit_game()
                 break
             self.play_round()
+
+    def simulate(self,num_rounds):
+        self.num_rounds = 0
+        self.autoplay = True
+        for _ in range(num_rounds):
+            if not self.players:
+                support.prompts_exit_game()
+                break
+            self.play_round()
+            if self.num_rounds%10_000==0:
+                support.show_sim_results(self)
+        support.show_sim_results(self)
 
     def play_round(self,autoplay=None):
         if autoplay is not None:
@@ -43,6 +56,7 @@ class Table:
         support.show_result(self.dealer,self.players,self)
         self.payout()
         self.cleanup_round()
+        self.num_rounds += 1
 
     ####################################################################################################################
     # Support
@@ -74,7 +88,8 @@ class Table:
         if player.play_as:
             action = support.prompt_play_hand(player,hand,self.dealer,self)
         else:
-            action = player.decide_action(hand, self.dealer, self.shoe, self)
+            action = player.decide_action(hand, self.dealer, self)
+        self.check_if_action_legal(player,hand,action)
         self.do_action(action,player,hand)
 
     def do_action(self,action,player,hand):
@@ -188,9 +203,11 @@ class Table:
         #TODO
         pass
 
-    def check_if_action_legal(self,player,action):
-        #TODO
-        pass
+    def check_if_action_legal(self,player,hand,action):
+        if player.strategy == StrategyOptions.DEALER:
+            return
+        if action not in self.legal_actions(hand, player):
+            logging.critical("\nIllegal action.\n")
 
 
 
