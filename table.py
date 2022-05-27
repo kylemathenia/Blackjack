@@ -109,7 +109,6 @@ class Table:
             new_hand = player.hands[-1]
             new_hand.complete = True
 
-
     def payout(self):
         """Settle up winnings and losings."""
         dealers_hand = self.dealer.hands[0]
