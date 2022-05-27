@@ -6,7 +6,9 @@ num_to_action_map = {'1':AO.STAND,'2':AO.HIT,'3':AO.DOUBLE_DOWN,'4':AO.SPLIT}
 
 def prompt_make_bet(player,table):
     while True:
-        bet = input("\n{}, how much would you like to bet?\nCurrent money: ${}\n> ".format(player.name,player.money))
+        bet = input("\n{}, how much would you like to bet?\nCurrent money: ${}\n<ENTER> for standard bet.\n> ".format(player.name,player.money))
+        if bet == '':
+            return player.standard_bet
         if not bet.isnumeric():
             print("\nInvalid entry. Not a number.")
             continue
@@ -27,9 +29,9 @@ def prompt_play_hand(player,hand,dealer,table):
 def show_hand_state(hand,dealer,player):
     dealers_hand = dealer.hands[0]
     dealer_card = dealers_hand.cards[0]
-    print("\n\n\n\n\n\n\n\n\nDealer showing:\n{}\t{}\n\n{}'s hand:".format(dealer_card.name,dealer_card.card_value,player.name))
+    print("\n\n\n\n\n\n\n\n\nDealer showing:\n{}  \t{}\n\n{}'s hand:".format(dealer_card.card_value,dealer_card.name,player.name))
     for card in hand.cards:
-        print("{}\t{}".format(card.name,card.card_value))
+        print("{}   \t{}".format(card.card_value,card.name))
     show_hand_total(hand)
 
 def get_action(hand,player,table):

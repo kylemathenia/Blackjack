@@ -5,7 +5,7 @@ from shoe import Shoe
 import support
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 class Table:
@@ -55,7 +55,8 @@ class Table:
 
     def make_bets(self):
         for player in self.players:
-            player.make_bet(self.shoe,self)
+            while player.make_bet(self.shoe,self):
+                pass
 
     def deal(self):
         self.dealer.hand_init(self.shoe.draw_two())
@@ -108,7 +109,6 @@ class Table:
             new_hand = player.hands[-1]
             new_hand.complete = True
 
-
     def payout(self):
         """Settle up winnings and losings."""
         dealers_hand = self.dealer.hands[0]
@@ -118,10 +118,14 @@ class Table:
 
     def hand_winnings(self,hand,dealers_hand):
         dealers_hand_value = dealers_hand.best_value
-        if hand.best_value > 21:
+        if dealers_hand.is_blackjack and hand.is_blackjack:
+            return 0
+        elif dealers_hand.is_blackjack and not hand.is_blackjack:
             return -hand.bet
-        elif hand.best_value == 21:
-            return hand.bet*self.blackjack_prize_mult
+        elif hand.is_blackjack and not dealers_hand.is_blackjack:
+            return hand.bet * self.blackjack_prize_mult
+        elif hand.best_value > 21:
+            return -hand.bet
         elif dealers_hand_value > 21:
             return hand.bet
         elif hand.best_value > dealers_hand_value:
