@@ -14,6 +14,10 @@ class Shoe:
         self.refill()
         self.played = []
 
+    @property
+    def decks_left(self):
+        return self.cards_left//52 + 1
+
     def draw_one(self):
         if self.cards_left <= self.shoe_refill_depth:
             self.refill()

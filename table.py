@@ -119,10 +119,14 @@ class Table:
 
     def hand_winnings(self,hand,dealers_hand):
         dealers_hand_value = dealers_hand.best_value
-        if hand.best_value > 21:
+        if dealers_hand.is_blackjack and hand.is_blackjack:
+            return 0
+        elif dealers_hand.is_blackjack and not hand.is_blackjack:
             return -hand.bet
-        elif hand.best_value == 21 and dealers_hand_value != 21:
-            return hand.bet*self.blackjack_prize_mult
+        elif hand.is_blackjack and not dealers_hand.is_blackjack:
+            return hand.bet * self.blackjack_prize_mult
+        elif hand.best_value > 21:
+            return -hand.bet
         elif dealers_hand_value > 21:
             return hand.bet
         elif hand.best_value > dealers_hand_value:

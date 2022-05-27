@@ -15,6 +15,12 @@ class Hand:
                 return True
         else:
             return False
+    @property
+    def is_blackjack(self):
+        if len(self.cards) == 2 and Cards.ACE in self.cards and self.best_value == 21:
+            return True
+        else:
+            return False
 
     @property
     def face_up_cards(self):
