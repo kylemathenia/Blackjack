@@ -4,13 +4,15 @@ from options import StrategyOptions,ActionOptions,Cards
 from shoe import Shoe
 import support
 import logging
+import copy
+import concurrent.futures
 
 logging.basicConfig(level=logging.INFO)
 
 
 class Table:
     def __init__(self,players,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,
-                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False):
+                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False,boot_when_poor=False):
         self.players = players # Set of player objects
         self.dealer = Player('Dealer',StrategyOptions.DEALER,play_as=False)
         self.shoe = Shoe(num_decks,shoe_shuffle_depth)
@@ -20,6 +22,7 @@ class Table:
         self.hit_soft_17 = hit_soft_17
         self.double_after_split = double_after_split
         self.autoplay = autoplay
+        self.boot_when_poor = boot_when_poor
 
     ####################################################################################################################
     # Main
@@ -31,18 +34,6 @@ class Table:
                 support.prompts_exit_game()
                 break
             self.play_round()
-
-    def simulate(self,num_rounds):
-        self.num_rounds = 0
-        self.autoplay = True
-        for _ in range(num_rounds):
-            if not self.players:
-                support.prompts_exit_game()
-                break
-            self.play_round()
-            if self.num_rounds%10_000==0:
-                support.show_sim_results(self)
-        support.show_sim_results(self)
 
     def play_round(self,autoplay=None):
         if autoplay is not None:
@@ -57,6 +48,59 @@ class Table:
         self.payout()
         self.cleanup_round()
         self.num_rounds += 1
+
+    ####################################################################################################################
+    # Simulation
+    ####################################################################################################################
+
+    def sim_and_print(self,num_rounds):
+        self.num_rounds = 0
+        self.autoplay = True
+        for _ in range(num_rounds):
+            if not self.players:
+                support.prompts_exit_game()
+                break
+            self.play_round()
+            if self.num_rounds%10_000==0:
+                support.show_sim_results(self)
+        support.show_sim_results(self)
+
+    def simulate_one(self,x_series):
+        """Simulates one full x_series of play. Saves players scores at every x_series entry number of rounds."""
+        num_rounds = x_series[-1]
+        self.autoplay = True
+        for round_number in range(num_rounds):
+            self.play_round()
+            if round_number in x_series:
+                for player in self.players:
+                    player.single_sim_results.append(player.money)
+
+
+    def simulate(self,x_series, sample_size):
+        table_copies = []
+        for i in range(sample_size):
+            table_copies.append(copy.deepcopy(self))
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            results = [executor.submit(table.simulate_one,x_series) for table in table_copies]
+        table_results = []
+        for f in concurrent.futures.as_completed(results):
+            table_results.append(f.result())
+        # Create a list of sim results for every player.
+        # This results in a list for every player that has sample_size number of lists, where each list has the result
+        # from one x_series of play.
+        for table in table_results:
+            assert not table.boot_when_poor
+            # TODO need to change the gameplay to handle keeping the player at the table if the player is out of money.
+            # self.boot_when_poor is the flag for this.
+            for sim_player in table.players:
+                for player in self.players:
+                    if sim_player.name == player.name:
+                        player.all_sim_results.append(sim_player.single_sim_results)
+
+        for player in self.players:
+            # Find the average and standard deviation of the sim_results for each player.
+            self.ave_sim_results = []
+            self.std_sim_results = []
 
     ####################################################################################################################
     # Support

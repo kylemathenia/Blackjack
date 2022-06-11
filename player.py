@@ -13,6 +13,10 @@ class Player:
         self.money = money
         self.standard_bet = standard_bet
         self.play_as = play_as
+        self.single_sim_results = []
+        self.all_sim_results = []
+        self.ave_sim_results = []
+        self.std_sim_results = []
 
     def make_bet(self,shoe,table):
         if self.play_as:
