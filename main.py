@@ -2,23 +2,29 @@
 from table import Table
 from player import Player
 from options import StrategyOptions
-import copy
+import simulations
 
-# Create players
-jake = Player('Jake', StrategyOptions.HI_LOW_COUNT, money=5_000_000, standard_bet=50, play_as=False)
-kyle = Player('Kyle',StrategyOptions.BASIC,money=5_000_000,standard_bet=50,play_as=False)
+def main():
+    # Create players
+    jake = Player('Jake', StrategyOptions.BASIC, money=5_000, standard_bet=25, play_as=False)
+    kyle = Player('Kyle', StrategyOptions.BASIC, money=5_000, standard_bet=25, play_as=False)
+    # Create tables
+    multiplayer_table = Table([jake,kyle], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
+                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True, autoplay=True,
+                  boot_when_poor=False,round_lim=100_000)
 
-# Create table
-t = Table([jake, kyle],num_decks=1,shoe_shuffle_depth=0,min_bet=5,max_bet=10000,
-                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False)
+    singleplayer_table = Table([jake], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
+                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True, autoplay=True,
+                  boot_when_poor=False,round_lim=100_000)
 
-# t.play()
-t.sim_and_print(1_000_000)
-t.simulate([100,200,300,400,500], 50)
-# Find all the player sim results as shown below.
-for player in t.players:
-    player.ave_sim_results
-    player.std_sim_results
+    # multiplayer_table.play()
+
+    # Simulate
+    simulations.one_player_one_table(singleplayer_table,num_rounds=200_000,sample_size=10,num_points=500,multiprocessing=True,save=False)
+
+if __name__ == '__main__':
+    main()
+
 
 # We want to see:
 # 1. What happens if you play basic strategy with different table rules.

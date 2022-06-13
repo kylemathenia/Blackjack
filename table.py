@@ -6,13 +6,16 @@ import support
 import logging
 import copy
 import concurrent.futures
+import numpy as np
+import time
 
 logging.basicConfig(level=logging.INFO)
 
 
 class Table:
     def __init__(self,players,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,
-                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False,boot_when_poor=False):
+                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False,boot_when_poor=False,
+                 round_lim=100_000):
         self.players = players # Set of player objects
         self.dealer = Player('Dealer',StrategyOptions.DEALER,play_as=False)
         self.shoe = Shoe(num_decks,shoe_shuffle_depth)
@@ -23,21 +26,26 @@ class Table:
         self.double_after_split = double_after_split
         self.autoplay = autoplay
         self.boot_when_poor = boot_when_poor
+        self.round_lim = round_lim
+        self.num_rounds = 0
+        self.autoplay_update_freq = 10_000
 
     ####################################################################################################################
-    # Main
+    # Main functions
     ####################################################################################################################
     def play(self):
+        """Main game loop."""
         self.num_rounds = 0
         while True:
-            if not self.players:
+            if not self.players or self.num_rounds > self.round_lim:
                 support.prompts_exit_game()
                 break
             self.play_round()
+            if self.autoplay:
+                support.show_autoplay_results(self)
 
-    def play_round(self,autoplay=None):
-        if autoplay is not None:
-            self.autoplay = autoplay
+    def play_round(self):
+        """Single round of play."""
         self.round_setup()
         self.make_bets()
         self.deal()
@@ -50,71 +58,67 @@ class Table:
         self.num_rounds += 1
 
     ####################################################################################################################
-    # Simulation
+    # Simulation functions
     ####################################################################################################################
 
-    def sim_and_print(self,num_rounds):
-        self.num_rounds = 0
-        self.autoplay = True
-        for _ in range(num_rounds):
-            if not self.players:
-                support.prompts_exit_game()
-                break
-            self.play_round()
-            if self.num_rounds%10_000==0:
-                support.show_sim_results(self)
-        support.show_sim_results(self)
+    def simulate(self,x_series,sample_size=100,multiprocessing=True):
+        """Simulates a single table configuration, sample_size number of times, and processes data."""
+        self.check_settings_for_sim()
+        # Create copies of this table configuration.
+        table_copies = []
+        for i in range(sample_size):
+            table = copy.deepcopy(self)
+            table.table_num = i
+            # Refill the shoe so that all tables do not have the same starting shoe.
+            table.shoe.refill()
+            table_copies.append(table)
+        # Simulate and process data
+        start_time = time.perf_counter()
+        table_results = self.simulate_all_table_copies(x_series,multiprocessing,table_copies)
+        logging.info('\nSimulation time: {:.2f} sec\n'.format(time.perf_counter()-start_time))
+        support.process_sim_data(self,table_results,x_series)
 
-    def simulate_one(self,x_series):
+
+    def simulate_all_table_copies(self,x_series,multiprocessing,table_copies):
+        if multiprocessing:
+            with concurrent.futures.ProcessPoolExecutor() as executor:
+                results = [executor.map(table.simulate_one_gameplay_series, [x_series]) for table in table_copies]
+            table_results = []
+            for result in results:
+                for sub_result in result:
+                    table_results.append(sub_result)
+        if not multiprocessing:
+            for table in table_copies:
+                table.simulate_one_gameplay_series(x_series)
+            table_results = table_copies
+        return table_results
+
+    def simulate_one_gameplay_series(self,x_series):
         """Simulates one full x_series of play. Saves players scores at every x_series entry number of rounds."""
-        num_rounds = x_series[-1]
+        num_rounds = x_series[-1] + 1
         self.autoplay = True
         for round_number in range(num_rounds):
             self.play_round()
             if round_number in x_series:
                 for player in self.players:
-                    player.single_sim_results.append(player.money)
+                    player.gameplay_results.append(player.money)
+        logging.info('Completed simulation for table num {}'.format(self.table_num))
+        return self
 
-
-    def simulate(self,x_series, sample_size):
-        table_copies = []
-        for i in range(sample_size):
-            table_copies.append(copy.deepcopy(self))
-        with concurrent.futures.ProcessPoolExecutor() as executor:
-            results = [executor.submit(table.simulate_one,x_series) for table in table_copies]
-        table_results = []
-        for f in concurrent.futures.as_completed(results):
-            table_results.append(f.result())
-        # Create a list of sim results for every player.
-        # This results in a list for every player that has sample_size number of lists, where each list has the result
-        # from one x_series of play.
-        for table in table_results:
-            assert not table.boot_when_poor
-            # TODO need to change the gameplay to handle keeping the player at the table if the player is out of money.
-            # self.boot_when_poor is the flag for this.
-            for sim_player in table.players:
-                for player in self.players:
-                    if sim_player.name == player.name:
-                        player.all_sim_results.append(sim_player.single_sim_results)
-
-        for player in self.players:
-            # Find the average and standard deviation of the sim_results for each player.
-            self.ave_sim_results = []
-            self.std_sim_results = []
 
     ####################################################################################################################
     # Support
     ####################################################################################################################
 
     def round_setup(self):
-        self.check_if_players_legal()
+        if self.boot_when_poor:
+            self.check_if_players_legal()
         if not self.autoplay:
             self.show_table_status()
 
     def make_bets(self):
         for player in self.players:
-            while player.make_bet(self.shoe,self):
-                pass
+            player.make_bet(self.shoe,self)
 
     def deal(self):
         self.dealer.hand_init(self.shoe.draw_two())
@@ -150,6 +154,7 @@ class Table:
                 self.play_hand(player,hand)
         elif action == ActionOptions.DOUBLE_DOWN:
             hand.bet += hand.bet
+            player.total_bet_for_round += hand.bet
             hand.cards.append(self.shoe.draw_one())
             hand.complete = True
         elif action == ActionOptions.SPLIT:
@@ -163,6 +168,7 @@ class Table:
         # Create a new hand with the split card.
         new_card = self.shoe.draw_one()
         player.hand_init([split_card,new_card], bet=hand.bet)
+        assert(player.total_bet_for_round<=player.money)
         if split_card == Cards.ACE: # If splitting aces, you only get one card.
             hand.complete = True
             new_hand = player.hands[-1]
@@ -174,6 +180,11 @@ class Table:
         for player in self.players:
             for hand in player.hands:
                 player.money += self.hand_winnings(hand,dealers_hand)
+                try:
+                    assert(player.money >= 0)
+                except:
+                    logging.critical('\nError: player.money is negative somehow.')
+                    pass
 
     def hand_winnings(self,hand,dealers_hand):
         dealers_hand_value = dealers_hand.best_value
@@ -197,6 +208,7 @@ class Table:
     def cleanup_round(self):
         for player in self.players:
             player.discard_hands()
+            player.total_bet_for_round = 0
         self.dealer.discard_hands()
 
     def show_table_status(self):
@@ -248,11 +260,25 @@ class Table:
         pass
 
     def check_if_action_legal(self,player,hand,action):
+        # TODO this is not accounting for betting more than you have for double down and splits.
         if player.strategy == StrategyOptions.DEALER:
             return
         if action not in self.legal_actions(hand, player):
             logging.critical("\nIllegal action.\n")
 
+    def check_settings_for_sim(self):
+        if self.boot_when_poor:
+            logging.warning('\nTable configuration "boot_when_poor" must be False for simulations. Changing to False.')
+            self.boot_when_poor = False
+        if not self.autoplay:
+            logging.warning('\nTable configuration "autoplay" must be True for simulations. Changing to True.')
+            self.boot_when_poor = True
+        for player in self.players:
+            if player.play_as:
+                logging.warning('\nPlayer configuration "play_as" must be False for simulations. Changing to False.')
+                self.boot_when_poor = False
 
 
 
+def add_one():
+    return 1

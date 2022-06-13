@@ -17,21 +17,34 @@ def decide_bet(player,shoe,table):
             bet = player.standard_bet * shoe.true_count
         else:
             bet = player.standard_bet
+    else:
+        raise IOError
     return change_bet_if_poor(bet,player,table)
 
 def change_bet_if_poor(bet,player,table):
-    if bet > player.money:
+    # TODO need to make sure to not bet more than is commited with other hands.
+    if player.money < table.min_bet:
+        return 0
+    elif bet > player.money:
         return table.min_bet
     else:
         return bet
 
 def decide_action(player,hand,dealer,table,strategy):
     if strategy == StrategyOptions.BASIC:
-        return basic_strategy_action(player,hand,dealer,table)
-    if strategy == StrategyOptions.DEALER:
-        return dealer_strategy_action(hand,table)
-    if strategy == StrategyOptions.HI_LOW_COUNT:
-        return deviation_strategy_action(player,hand,dealer,table)
+        action = basic_strategy_action(player,hand,dealer,table)
+    elif strategy == StrategyOptions.DEALER:
+        action = dealer_strategy_action(hand,table)
+    elif strategy == StrategyOptions.HI_LOW_COUNT:
+        action = deviation_strategy_action(player,hand,dealer,table)
+    else:
+        raise KeyError
+
+    if action == AO.DD_OR_STAND or action == AO.DD_OR_HIT or action == AO.DOUBLE_DOWN:
+        action = check_double_down(action,hand,table,player)
+    if action == AO.SPLIT:
+        action = check_split(action, hand, table, player)
+    return action
 
 def basic_strategy_action(player,hand,dealer,table):
     dealer_card = dealer.hands[0].cards[0]
@@ -43,7 +56,6 @@ def basic_strategy_action(player,hand,dealer,table):
         action = basic_soft_hand_map[dealer_card][hand.soft_total_low]
     else:
         action = basic_hard_hand_map[dealer_card][hand.hard_sum]
-    action = check_double_down(action,hand,table,player)
     return action
 
 def deviation_strategy_action(player, hand, dealer, table):
@@ -83,7 +95,6 @@ def deviation_strategy_action(player, hand, dealer, table):
                     action = action_list[1]
         else:
             action = deviations_basic_hard_hand_map[dealer_card][hand.hard_sum][0]
-    action = check_double_down(action,hand,table,player)
     return action
 
 def dealer_strategy_action(hand,table):
@@ -111,8 +122,20 @@ def check_double_down(action,hand,table,player):
         return no_double_down_action(action)
     elif hand.bet*2 > player.money:
         return no_double_down_action(action)
+    elif (player.money - player.total_bet_for_round - hand.bet) < 0:
+        return no_double_down_action(action)
     else:
         return AO.DOUBLE_DOWN
+
+def check_split(action,hand,table,player):
+    """Can only split if you have enough money to cover the other hand. Modifies action if double down isn't legal."""
+    # Need to add a check to make sure the table allows multiple splits.
+    if (player.bet_size*2)>player.money:
+        pass
+    if (player.money - player.total_bet_for_round) < hand.bet:
+        return AO.HIT
+    else:
+        return AO.SPLIT
 
 def no_double_down_action(action):
     if action == AO.DD_OR_STAND: return AO.STAND
