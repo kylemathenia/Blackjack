@@ -96,7 +96,6 @@ class Table:
     def simulate_one_gameplay_series(self,x_series):
         """Simulates one full x_series of play. Saves players scores at every x_series entry number of rounds."""
         num_rounds = x_series[-1] + 1
-        self.autoplay = True
         for round_number in range(num_rounds):
             self.play_round()
             if round_number in x_series:
@@ -184,7 +183,6 @@ class Table:
                     assert(player.money >= 0)
                 except:
                     logging.critical('\nError: player.money is negative somehow.')
-                    pass
 
     def hand_winnings(self,hand,dealers_hand):
         dealers_hand_value = dealers_hand.best_value
@@ -278,7 +276,3 @@ class Table:
                 logging.warning('\nPlayer configuration "play_as" must be False for simulations. Changing to False.')
                 self.boot_when_poor = False
 
-
-
-def add_one():
-    return 1

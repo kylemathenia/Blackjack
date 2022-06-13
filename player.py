@@ -52,6 +52,10 @@ class Player:
         print("\nPlayer: {}\nMoney: ${}\nWinnings: ${}".format(
             self.name,self.money,self.money-self.starting_money))
 
+    @property
+    def info(self):
+        return 'Name: {:<20} Strategy: {:<20} Standard bet: ${:<20} Starting Money: ${:<20}'.format(self.name,self.strategy.name,self.standard_bet,self.starting_money)
+
 
 
 

@@ -11,6 +11,14 @@ def decide_bet(player,shoe,table):
     """Place bets for a hand. Each hand (if there are multiple) has a bet associated with it."""
     if player.strategy == StrategyOptions.BASIC:
         bet = player.standard_bet
+    elif player.strategy == StrategyOptions.BASIC_HIT_HARD_16:
+        bet = player.standard_bet
+    elif player.strategy == StrategyOptions.BASIC_STAND_HARD_16:
+        bet = player.standard_bet
+    elif player.strategy == StrategyOptions.BASIC_NEVER_DD:
+        bet = player.standard_bet
+    elif player.strategy == StrategyOptions.BASIC_NEVER_SPLIT:
+        bet = player.standard_bet
     ## used linear function which is not optitimal
     elif player.strategy == StrategyOptions.HI_LOW_COUNT:
         if shoe.true_count > 2:
@@ -33,10 +41,37 @@ def change_bet_if_poor(bet,player,table):
 def decide_action(player,hand,dealer,table,strategy):
     if strategy == StrategyOptions.BASIC:
         action = basic_strategy_action(player,hand,dealer,table)
+
+    elif strategy == StrategyOptions.BASIC_HIT_HARD_16:
+        if not hand.hand_soft and hand.best_value == 16:
+            action = AO.HIT
+        else:
+            action = basic_strategy_action(player,hand,dealer,table)
+
+    elif strategy == StrategyOptions.BASIC_STAND_HARD_16:
+        if not hand.hand_soft and hand.best_value == 16:
+            action = AO.STAND
+        else:
+            action = basic_strategy_action(player,hand,dealer,table)
+
+    elif strategy == StrategyOptions.BASIC_NEVER_DD:
+        action = basic_strategy_action(player, hand, dealer, table)
+        if action == AO.DD_OR_STAND or action == AO.DD_OR_HIT:
+            action = no_double_down_action(action)
+        elif action == AO.DOUBLE_DOWN:
+            action = AO.HIT
+
+    elif strategy == StrategyOptions.BASIC_NEVER_SPLIT:
+        action = basic_strategy_action(player, hand, dealer, table)
+        if action == AO.SPLIT:
+            action = AO.HIT
+
     elif strategy == StrategyOptions.DEALER:
         action = dealer_strategy_action(hand,table)
+
     elif strategy == StrategyOptions.HI_LOW_COUNT:
         action = deviation_strategy_action(player,hand,dealer,table)
+
     else:
         raise KeyError
 

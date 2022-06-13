@@ -13,8 +13,12 @@ class ActionOptions(Enum):
 
 class StrategyOptions(Enum):
     DEALER = 1
-    BASIC = 2
-    HI_LOW_COUNT = 3
+    HI_LOW_COUNT = 2
+    BASIC = 3
+    BASIC_HIT_HARD_16 = 4
+    BASIC_STAND_HARD_16 = 5
+    BASIC_NEVER_DD = 6
+    BASIC_NEVER_SPLIT = 7
 
 class Cards(Enum):
     """Must be initialized with different values. (so not the card values) """

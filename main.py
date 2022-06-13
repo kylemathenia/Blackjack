@@ -7,9 +7,13 @@ import simulations
 def main():
     # Create players
     jake = Player('Jake', StrategyOptions.BASIC, money=5_000, standard_bet=25, play_as=False)
-    kyle = Player('Kyle', StrategyOptions.BASIC, money=5_000, standard_bet=25, play_as=False)
+    kyle = Player('Kyle', StrategyOptions.BASIC_STAND_HARD_16, money=5_000, standard_bet=25, play_as=False)
+    dillon = Player('Dillon', StrategyOptions.BASIC_HIT_HARD_16, money=5_000, standard_bet=25, play_as=False)
+    diego = Player('Diego', StrategyOptions.BASIC_NEVER_DD, money=5_000, standard_bet=25, play_as=False)
+    jung = Player('Jung', StrategyOptions.BASIC_NEVER_SPLIT, money=5_000, standard_bet=25, play_as=False)
+
     # Create tables
-    multiplayer_table = Table([jake,kyle], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
+    multiplayer_table = Table([jake,kyle,dillon,diego,jung], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
                   blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True, autoplay=True,
                   boot_when_poor=False,round_lim=100_000)
 
@@ -20,7 +24,10 @@ def main():
     # multiplayer_table.play()
 
     # Simulate
-    simulations.one_player_one_table(singleplayer_table,num_rounds=200_000,sample_size=10,num_points=500,multiprocessing=True,save=False)
+    # Ideal: 300,000 rounds, 10,000 sample size, 500 num points
+    # simulations.one_player_one_table(singleplayer_table,num_rounds=300_000,sample_size=10_000,num_points=500,multiprocessing=True,save=True,filename_base='one_player_one_table_300000_rounds')
+    # Ideal: 10,000 rounds, 20,000 sample size, 500 num points
+    simulations.multiplayer_one_table(multiplayer_table,num_rounds=100,sample_size=2000,num_points=500,multiprocessing=True,save=False)
 
 if __name__ == '__main__':
     main()
@@ -33,12 +40,3 @@ if __name__ == '__main__':
 # - Create one table and simulate.
 # 3. What happens if the table has different min bets.
 # - Create a bunch of different tables and simulate.
-
-# The data from the simulation should be, for each player, a timeseries of mean scores, and standard deviations at those means.
-# Arguments:
-# x series as an argument, which is a list of the round numbers to record data at.
-# Sample size.
-
-# Returns:
-# List of players.
-# Each player sim_mean_scores sim_std_scores.
