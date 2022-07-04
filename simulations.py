@@ -3,6 +3,7 @@
 import visualizations
 import support
 import logging
+import os
 
 # TODO refactor to combine single-player and multi-player simulations. This was just a quick implementation.
 
@@ -26,8 +27,12 @@ def singleplayer_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,m
     print('\nSample size: \n{}'.format(sample_size))
     title = 'Basic Strategy - 25 Dollar Hands - 1,2,3 Sigma'
     if save:
+        os.chdir("./output")
         save_singleplayer_table(x_series,table,sample_size,filename_base=filename_base)
-    visualizations.one_table_one_player(player,x_series,title,save=save,filename_base=filename_base)
+        visualizations.one_table_one_player(player, x_series, title, save=save, filename_base=filename_base)
+        os.chdir("..")
+    else:
+        visualizations.one_table_one_player(player,x_series,title,save=save,filename_base=filename_base)
 
 def save_singleplayer_table(x_series,table,sample_size,filename_base='singleplayer_table'):
     filename=filename_base+'.txt'
@@ -65,8 +70,12 @@ def multiplayer_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,mu
     print('\nSample size: \n{}'.format(sample_size))
 
     if save:
+        os.chdir("./output")
         save_multiplayer_table(x_series,table,sample_size,filename_base=filename_base)
-    visualizations.strategy_comparison(table.players,x_series,save=save,filename_base=filename_base)
+        visualizations.strategy_comparison(table.players, x_series, save=save, filename_base=filename_base)
+        os.chdir("..")
+    else:
+        visualizations.strategy_comparison(table.players,x_series,save=save,filename_base=filename_base)
 
 def save_multiplayer_table(x_series,table,sample_size,filename_base='multiplayer_table'):
     filename=filename_base+'.txt'

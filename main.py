@@ -13,7 +13,7 @@ def main():
                   blackjack_multiple=1.5, hit_soft_17=False, double_after_split=False)
     # Simulate a single-player table.
     simulations.singleplayer_table(singleplayer_table,num_rounds=1_000,sample_size=1_000,num_points=200,
-                                   multiprocessing=True,save=False,filename_base='single-player')
+                                   multiprocessing=True,save=True,filename_base='single-player')
 
     ####################################################################################################################
 
