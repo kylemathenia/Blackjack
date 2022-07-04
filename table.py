@@ -1,3 +1,5 @@
+"""A blackjack table class."""
+
 from player import Player
 from options import StrategyOptions,ActionOptions,Cards
 from shoe import Shoe
@@ -11,6 +13,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 class Table:
+    """A blackjack table. Contains blackjack player instances, a dealer, and a shoe of cards."""
     def __init__(self,players,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,
                  blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,boot_when_poor=False,
                  round_lim=100_000):
@@ -169,7 +172,7 @@ class Table:
         hand.cards.append(self.shoe.draw_one())
         # Create a new hand with the split card.
         new_card = self.shoe.draw_one()
-        player.hand_init([split_card,new_card], bet=hand.bet)
+        player.hand_init([split_card,new_card])
         # Check edge case to make sure they didn't bet more money than they have during split hands.
         assert(player.total_bet_for_round<=player.money)
         if split_card == Cards.ACE: # If splitting aces, you only get one card and the hand is done.

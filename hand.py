@@ -1,7 +1,9 @@
+"""A blackjack hand class."""
 
 from options import StrategyOptions,Cards
 
 class Hand:
+    """A blackjack hand class."""
     def __init__(self, player, cards, bet):
         self.player = player
         self.cards = cards

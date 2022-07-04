@@ -1,3 +1,4 @@
+"""A class for a shoe of cards."""
 
 from options import Cards
 import random
@@ -6,6 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 class Shoe:
+    """A class for a shoe of cards. Used with a blackjack table instance."""
     def __init__(self,num_decks,shoe_refill_depth):
         self.num_decks = num_decks
         self.shoe_refill_depth = shoe_refill_depth

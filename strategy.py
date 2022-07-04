@@ -1,13 +1,11 @@
-
+"""Strategy functions to decide actions according the selected player strategy."""
 
 import pandas as pd
 from options import ActionOptions as AO
 from options import StrategyOptions,Cards
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-
 def decide_bet(player,shoe,table):
-    """Place bets for a hand. Each hand (if there are multiple) has a bet associated with it."""
     if player.strategy == StrategyOptions.BASIC:
         bet = player.standard_bet
     elif player.strategy == StrategyOptions.BASIC_HIT_HARD_16:
@@ -18,7 +16,7 @@ def decide_bet(player,shoe,table):
         bet = player.standard_bet
     elif player.strategy == StrategyOptions.BASIC_NEVER_SPLIT:
         bet = player.standard_bet
-    ## used linear function which is not optitimal
+    # Used a linear function which is not optimal for card counting, but easy to implement.
     elif player.strategy == StrategyOptions.HI_LOW_COUNT:
         if shoe.true_count > 2:
             bet = player.standard_bet * shoe.true_count
@@ -26,6 +24,7 @@ def decide_bet(player,shoe,table):
             bet = player.standard_bet
     else:
         raise IOError
+    # Modify bet if not allowed.
     return change_bet_if_poor(bet,player,table)
 
 def change_bet_if_poor(bet,player,table):
@@ -38,29 +37,29 @@ def change_bet_if_poor(bet,player,table):
 
 def decide_action(player,hand,dealer,table,strategy):
     if strategy == StrategyOptions.BASIC:
-        action = basic_strategy_action(player,hand,dealer,table)
+        action = basic_strategy_action(player,hand,dealer)
 
     elif strategy == StrategyOptions.BASIC_HIT_HARD_16:
         if not hand.hand_soft and hand.best_value == 16:
             action = AO.HIT
         else:
-            action = basic_strategy_action(player,hand,dealer,table)
+            action = basic_strategy_action(player,hand,dealer)
 
     elif strategy == StrategyOptions.BASIC_STAND_HARD_16:
         if not hand.hand_soft and hand.best_value == 16:
             action = AO.STAND
         else:
-            action = basic_strategy_action(player,hand,dealer,table)
+            action = basic_strategy_action(player,hand,dealer)
 
     elif strategy == StrategyOptions.BASIC_NEVER_DD:
-        action = basic_strategy_action(player, hand, dealer, table)
+        action = basic_strategy_action(player, hand, dealer)
         if action == AO.DD_OR_STAND or action == AO.DD_OR_HIT:
             action = no_double_down_action(action)
         elif action == AO.DOUBLE_DOWN:
             action = AO.HIT
 
     elif strategy == StrategyOptions.BASIC_NEVER_SPLIT:
-        action = basic_strategy_action(player, hand, dealer, table)
+        action = basic_strategy_action(player, hand, dealer)
         if action == AO.SPLIT:
             action = AO.HIT
 
@@ -73,13 +72,14 @@ def decide_action(player,hand,dealer,table,strategy):
     else:
         raise KeyError
 
+    # Check the actions and modify if needed.
     if action == AO.DD_OR_STAND or action == AO.DD_OR_HIT or action == AO.DOUBLE_DOWN:
         action = check_double_down(action,hand,table,player)
     if action == AO.SPLIT:
         action = check_split(action, hand, table, player)
     return action
 
-def basic_strategy_action(player,hand,dealer,table):
+def basic_strategy_action(player,hand,dealer):
     dealer_card = dealer.hands[0].cards[0]
     if hand.is_double and len(player.hands)<3:
         double_card_index = hand.cards[0].card_value[-1]

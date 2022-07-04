@@ -1,7 +1,7 @@
+"""Visualization functions for blackjack table simulations."""
 
 from matplotlib import pyplot as plt
-from scipy.interpolate import make_interp_spline, BSpline
-import matplotlib as mpl
+from scipy.interpolate import make_interp_spline
 import numpy as np
 import support
 

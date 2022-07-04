@@ -1,3 +1,5 @@
+"""Gameplay prompts, data processing, and misc support functions."""
+
 import strategy
 from options import ActionOptions as AO
 from options import StrategyOptions
@@ -11,6 +13,11 @@ Player_Sim_Results_NT =  namedtuple("Player_Sim_Results_NT", "ave_loss_per_round
 
 action_to_num_map = {AO.STAND:'1',AO.HIT:'2',AO.DOUBLE_DOWN:'3',AO.SPLIT:'4',AO.BASIC_STRATEGY:'5',AO.HI_LOW_STRATEGY:'6'}
 num_to_action_map = {'1':AO.STAND,'2':AO.HIT,'3':AO.DOUBLE_DOWN,'4':AO.SPLIT,'5':AO.BASIC_STRATEGY,'6':AO.HI_LOW_STRATEGY}
+
+
+####################################################################################################################
+# Prompts/Info
+####################################################################################################################
 
 def prompt_make_bet(player,table):
     while True:
@@ -99,22 +106,24 @@ def prompts_exit_game():
     #winning percentage, etc.
     print("\nExiting game.\n")
 
-
 def prompt_start_hand(player,hand):
     print("\n########################################\nPlayer: {}, Money: {}, Bet: {}".format(
         player.name,player.money,hand.bet))
+
+
+####################################################################################################################
+# Data processing
+####################################################################################################################
 
 def find_ave_loss_per_round(ave_sim_results,x_series,starting_money):
     num_rounds = x_series[-1] + 1
     ending_money = ave_sim_results[-1]
     return (starting_money - ending_money) / num_rounds
 
-
 def process_sim_data(main_table,table_results,x_series,):
     percentiles_we_care_about = [1, 5, 10, 15, 20, 25, 30, 32, 35, 40, 45, 50, 55, 60, 65, 68, 70, 75, 80, 85, 90,
                                  95, 99]
     logging.info('\nPROCESSING DATA - Large sample sizes or number of rounds may take a while.\n')
-
     # Reset data just in case.
     for player in main_table.players:
         player.all_sim_results = []
@@ -182,6 +191,11 @@ def rearrange_percentile_results(percentile_sim_results,percentiles_we_care_abou
             percentile_series.append(percentile_sim_results[i][percentile])
         new_results[percentile] = percentile_series
     return new_results
+
+
+####################################################################################################################
+# Misc support
+####################################################################################################################
 
 def add_ts_to_filename(filename):
     split_fn = filename.split('.')
