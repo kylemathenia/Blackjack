@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 
 class Table:
     def __init__(self,players,num_decks=1,shoe_shuffle_depth=0,min_bet=1,max_bet=10000,
-                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,autoplay=False,boot_when_poor=False,
+                 blackjack_multiple=1.5,hit_soft_17=True,double_after_split=True,boot_when_poor=False,
                  round_lim=100_000):
         self.players = players # Set of player objects
         self.dealer = Player('Dealer',StrategyOptions.DEALER,play_as=False)
@@ -22,13 +22,9 @@ class Table:
         self.blackjack_prize_mult = blackjack_multiple
         self.hit_soft_17 = hit_soft_17
         self.double_after_split = double_after_split
-        # FIXME
-        self.autoplay = autoplay
         self.boot_when_poor = boot_when_poor
         self.round_lim = round_lim
         self.num_rounds = 0
-        # FIXME
-        self.autoplay_update_freq = 10_000
         self.simulating = False
         self.num_sim_rounds = 0
 
@@ -43,9 +39,6 @@ class Table:
                 support.prompts_exit_game()
                 break
             self.play_round()
-            # FIXME
-            if self.autoplay:
-                support.show_autoplay_results(self)
 
     def play_round(self):
         """Single round of play, used in both simulation and non-simulation."""
@@ -115,15 +108,14 @@ class Table:
         return self
 
     ####################################################################################################################
-    # Support
+    # Gameplay functions
     ####################################################################################################################
 
     def round_setup(self):
         """Check some things before a round, like if people have enough money, etc."""
         if self.boot_when_poor:
             self.check_if_players_legal()
-        # FIXME
-        if not self.autoplay:
+        if not self.simulating:
             self.show_table_status()
 
     def make_bets(self):
@@ -158,7 +150,7 @@ class Table:
             hand.cards.append(new_card)
             if player.play_as:
                 support.show_new_card(new_card,hand)
-            if hand.best_value > 21:
+            if hand.busted:
                 hand.complete = True
             else:
                 self.play_hand(player,hand)
@@ -178,8 +170,9 @@ class Table:
         # Create a new hand with the split card.
         new_card = self.shoe.draw_one()
         player.hand_init([split_card,new_card], bet=hand.bet)
+        # Check edge case to make sure they didn't bet more money than they have during split hands.
         assert(player.total_bet_for_round<=player.money)
-        if split_card == Cards.ACE: # If splitting aces, you only get one card.
+        if split_card == Cards.ACE: # If splitting aces, you only get one card and the hand is done.
             hand.complete = True
             new_hand = player.hands[-1]
             new_hand.complete = True
@@ -220,34 +213,19 @@ class Table:
             player.total_bet_for_round = 0
         self.dealer.discard_hands()
 
+    ####################################################################################################################
+    # Support and testing functions
+    ####################################################################################################################
+
     def show_table_status(self):
         print("\n\n##########   CURRENT TABLE STATUS   ##########")
         for player in self.players:
             player.show_status()
 
-    def legal_actions(self, hand, player):
-        legal_actions = [ActionOptions.STAND,ActionOptions.HIT]
-        #DOUBLE DOWN
-        if len(hand.cards) > 2:
-            pass
-        elif player.has_split_hands and not self.double_after_split:
-            pass
-        elif hand.bet*2 > player.money:
-            pass
-        else:
-            legal_actions.append(ActionOptions.DOUBLE_DOWN)
-        # SPLIT
-        if hand.is_double and len(player.hands) < 3:
-            legal_actions.append(ActionOptions.SPLIT)
-        return legal_actions
-
     @property
     def completion_percent(self):
         return (self.table_num/self.num_sim_rounds)*100
 
-    ####################################################################################################################
-    # Testing functions
-    ####################################################################################################################
     def check_if_players_legal(self):
         """Check to make sure the players given to this table have valid settings."""
         illegal_players = []
@@ -268,26 +246,23 @@ class Table:
             logging.info("\n{} has been removed from the table.".format(player.name))
             self.players.remove(player)
 
-    def is_legal_action(self,player,action):
-        #TODO
-        pass
-
     def check_if_action_legal(self,player,hand,action):
-        # TODO this is not accounting for betting more than you have for double down and splits.
+        # TODO not implemented. More complicated that you think.
         if player.strategy == StrategyOptions.DEALER:
             return
         if action not in self.legal_actions(hand, player):
             logging.critical("\nIllegal action.\n")
+
+    def legal_actions(self, hand, player):
+        # TODO not implemented. More complicated that you think.
+        legal_actions = [ActionOptions.STAND,ActionOptions.HIT,ActionOptions.DOUBLE_DOWN,ActionOptions.SPLIT]
+        return legal_actions
 
     def check_settings_for_sim(self):
         """Adjust table settings if not configured properly for simulation."""
         if self.boot_when_poor:
             logging.warning('\nTable configuration "boot_when_poor" must be False for simulations. Changing to False.')
             self.boot_when_poor = False
-        # FIXME
-        if not self.autoplay:
-            logging.warning('\nTable configuration "autoplay" must be True for simulations. Changing to True.')
-            self.autoplay = True
         for player in self.players:
             if player.play_as:
                 logging.warning('\nPlayer configuration "play_as" must be False for simulations. Changing to False.')

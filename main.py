@@ -14,13 +14,18 @@ def main():
 
 
     multiplayer_table = Table([jake,kyle,dillon,diego,jung], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
-                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True, autoplay=True,
+                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True,
                   boot_when_poor=False,round_lim=1_000_000)
     multiplayer_table.play()
 
+    # multiplayer_table = Table([jake,kyle,dillon,diego,jung], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
+    #               blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True,
+    #               boot_when_poor=False,round_lim=1_000_000)
+    # multiplayer_table.play()
+
     # Create a table and sim.
     multiplayer_table = Table([jake,kyle,dillon,diego,jung], num_decks=1, shoe_shuffle_depth=0, min_bet=25, max_bet=1000,
-                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True, autoplay=True,
+                  blackjack_multiple=1.5, hit_soft_17=True, double_after_split=True,
                   boot_when_poor=False,round_lim=1_000_000)
     simulations.multiplayer_table(multiplayer_table,num_rounds=1_000,sample_size=1_000,num_points=200,multiprocessing=True,save=False)
 
@@ -43,10 +48,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# TODO
-"""
--Make this a package so people can download, import and run their own simulations or play. 
--Make plots for different table configurations.
-"""

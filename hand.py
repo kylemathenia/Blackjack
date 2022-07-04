@@ -23,6 +23,13 @@ class Hand:
             return False
 
     @property
+    def busted(self):
+        if self.best_value > 21:
+            return True
+        else:
+            return False
+
+    @property
     def hand_values(self):
         if self.hand_soft:
             return [self.soft_total_low,self.soft_total_high]
@@ -38,7 +45,8 @@ class Hand:
 
     @property
     def best_value(self):
-        """Returns the highest possible value of the hand that is not a bust, or the bust value."""
+        """Since the hand could have multiple values, this returns the highest possible value of the hand that is not
+        a bust, or the bust value."""
         if not self.hand_soft:
             return self.hard_sum
         # If the hand is soft, the best value of the two will be the higher.

@@ -29,7 +29,6 @@ def decide_bet(player,shoe,table):
     return change_bet_if_poor(bet,player,table)
 
 def change_bet_if_poor(bet,player,table):
-    # TODO need to make sure to not bet more than is committed with other hands.
     if player.money < table.min_bet:
         return 0
     elif bet > player.money:

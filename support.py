@@ -91,8 +91,7 @@ def show_result(dealer,players,table):
             for hand in player.hands:
                 winnings = table.hand_winnings(hand,dealers_hand)
                 print("$Winnings: {}\tHand: {}\tDealer: {}".format(winnings,hand.best_value,dealers_hand.best_value))
-    # FIXME
-    if not table.autoplay:
+    if not table.simulating:
         input("\nPress <Enter>")
 
 def prompts_exit_game():
@@ -104,15 +103,6 @@ def prompts_exit_game():
 def prompt_start_hand(player,hand):
     print("\n########################################\nPlayer: {}, Money: {}, Bet: {}".format(
         player.name,player.money,hand.bet))
-
-# FIXME
-def show_autoplay_results(table):
-    if table.num_rounds % table.autoplay_update_freq != 0:
-        return
-    print("\n\nGAME STATUS:\n")
-    print("Number of rounds: {}\n".format(table.num_rounds))
-    for player in table.players:
-        print("Player: {}\nMoney: ${}\nWinnings: {}".format(player.name,player.money,player.money-player.starting_money))
 
 def find_ave_loss_per_round(ave_sim_results,x_series,starting_money):
     num_rounds = x_series[-1] + 1

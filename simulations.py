@@ -3,6 +3,7 @@ import support
 import logging
 
 def singleplayer_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,multiprocessing=True,save=False,filename_base='singleplayer_table'):
+    """Simulate a table with only one player. """
     assert(len(table.players) == 1)
     if num_rounds < num_points:
         logging.warning(
