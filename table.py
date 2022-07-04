@@ -1,4 +1,3 @@
-
 from player import Player
 from options import StrategyOptions,ActionOptions,Cards
 from shoe import Shoe
@@ -6,7 +5,6 @@ import support
 import logging
 import copy
 import concurrent.futures
-import numpy as np
 import time
 
 logging.basicConfig(level=logging.INFO)
@@ -24,35 +22,41 @@ class Table:
         self.blackjack_prize_mult = blackjack_multiple
         self.hit_soft_17 = hit_soft_17
         self.double_after_split = double_after_split
+        # FIXME
         self.autoplay = autoplay
         self.boot_when_poor = boot_when_poor
         self.round_lim = round_lim
         self.num_rounds = 0
+        # FIXME
         self.autoplay_update_freq = 10_000
+        self.simulating = False
+        self.num_sim_rounds = 0
 
     ####################################################################################################################
-    # Main functions
+    # Main functions.
     ####################################################################################################################
     def play(self):
-        """Main game loop."""
+        """Main game loop for non-simulation play."""
         self.num_rounds = 0
         while True:
             if not self.players or self.num_rounds > self.round_lim:
                 support.prompts_exit_game()
                 break
             self.play_round()
+            # FIXME
             if self.autoplay:
                 support.show_autoplay_results(self)
 
     def play_round(self):
-        """Single round of play."""
+        """Single round of play, used in both simulation and non-simulation."""
         self.round_setup()
         self.make_bets()
         self.deal()
         for player in self.players:
             self.play_hands(player)
         self.play_hands(self.dealer)
-        support.show_result(self.dealer,self.players,self)
+        if not self.simulating:
+            support.show_result(self.dealer,self.players,self)
         self.payout()
         self.cleanup_round()
         self.num_rounds += 1
@@ -62,8 +66,9 @@ class Table:
     ####################################################################################################################
 
     def simulate(self,x_series,sample_size=100,multiprocessing=True):
-        """Simulates a single table configuration, sample_size number of times, and processes data."""
+        """Simulates a single table configuration sample_size number of times and processes data."""
         self.check_settings_for_sim()
+        self.num_sim_rounds = sample_size
         # Create copies of this table configuration.
         table_copies = []
         for i in range(sample_size):
@@ -71,15 +76,19 @@ class Table:
             table.table_num = i
             # Refill the shoe so that all tables do not have the same starting shoe.
             table.shoe.refill()
+            table.simulating = True
             table_copies.append(table)
         # Simulate and process data
         start_time = time.perf_counter()
         table_results = self.simulate_all_table_copies(x_series,multiprocessing,table_copies)
-        logging.info('\nSimulation time: {:.2f} sec\n'.format(time.perf_counter()-start_time))
+        logging.info('\nSimulation time: {:.2f} min\n'.format((time.perf_counter()-start_time)/60))
+        start_time = time.perf_counter()
         support.process_sim_data(self,table_results,x_series)
+        logging.info('\nData processing time: {:.2f} min\n'.format((time.perf_counter()-start_time)/60))
 
 
     def simulate_all_table_copies(self,x_series,multiprocessing,table_copies):
+        """Performs the simulations for sample_size number of table copies."""
         if multiprocessing:
             with concurrent.futures.ProcessPoolExecutor() as executor:
                 results = [executor.map(table.simulate_one_gameplay_series, [x_series]) for table in table_copies]
@@ -94,24 +103,26 @@ class Table:
         return table_results
 
     def simulate_one_gameplay_series(self,x_series):
-        """Simulates one full x_series of play. Saves players scores at every x_series entry number of rounds."""
+        """Simulates one full x_series of play for a single sample table.
+        Saves players scores at every x_series entry number of rounds."""
         num_rounds = x_series[-1] + 1
         for round_number in range(num_rounds):
             self.play_round()
             if round_number in x_series:
                 for player in self.players:
                     player.gameplay_results.append(player.money)
-        logging.info('Completed simulation for table num {}'.format(self.table_num))
+        logging.info('\t{:.2f}% Complete\t\tTable {}/{} finished.'.format(self.completion_percent,self.table_num,self.num_sim_rounds))
         return self
-
 
     ####################################################################################################################
     # Support
     ####################################################################################################################
 
     def round_setup(self):
+        """Check some things before a round, like if people have enough money, etc."""
         if self.boot_when_poor:
             self.check_if_players_legal()
+        # FIXME
         if not self.autoplay:
             self.show_table_status()
 
@@ -230,6 +241,10 @@ class Table:
             legal_actions.append(ActionOptions.SPLIT)
         return legal_actions
 
+    @property
+    def completion_percent(self):
+        return (self.table_num/self.num_sim_rounds)*100
+
     ####################################################################################################################
     # Testing functions
     ####################################################################################################################
@@ -265,14 +280,15 @@ class Table:
             logging.critical("\nIllegal action.\n")
 
     def check_settings_for_sim(self):
+        """Adjust table settings if not configured properly for simulation."""
         if self.boot_when_poor:
             logging.warning('\nTable configuration "boot_when_poor" must be False for simulations. Changing to False.')
             self.boot_when_poor = False
+        # FIXME
         if not self.autoplay:
             logging.warning('\nTable configuration "autoplay" must be True for simulations. Changing to True.')
-            self.boot_when_poor = True
+            self.autoplay = True
         for player in self.players:
             if player.play_as:
                 logging.warning('\nPlayer configuration "play_as" must be False for simulations. Changing to False.')
-                self.boot_when_poor = False
-
+                self.play_as = False

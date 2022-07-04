@@ -91,6 +91,7 @@ def show_result(dealer,players,table):
             for hand in player.hands:
                 winnings = table.hand_winnings(hand,dealers_hand)
                 print("$Winnings: {}\tHand: {}\tDealer: {}".format(winnings,hand.best_value,dealers_hand.best_value))
+    # FIXME
     if not table.autoplay:
         input("\nPress <Enter>")
 
@@ -104,6 +105,7 @@ def prompt_start_hand(player,hand):
     print("\n########################################\nPlayer: {}, Money: {}, Bet: {}".format(
         player.name,player.money,hand.bet))
 
+# FIXME
 def show_autoplay_results(table):
     if table.num_rounds % table.autoplay_update_freq != 0:
         return
@@ -121,7 +123,7 @@ def find_ave_loss_per_round(ave_sim_results,x_series,starting_money):
 def process_sim_data(main_table,table_results,x_series,):
     percentiles_we_care_about = [1, 5, 10, 15, 20, 25, 30, 32, 35, 40, 45, 50, 55, 60, 65, 68, 70, 75, 80, 85, 90,
                                  95, 99]
-    logging.info('\nPROCESSING DATA - Large sample sizes may take a moment.\n')
+    logging.info('\nPROCESSING DATA - Large sample sizes or number of rounds may take a while.\n')
 
     # Reset data just in case.
     for player in main_table.players:
@@ -156,7 +158,7 @@ def process_sim_data(main_table,table_results,x_series,):
 
         players_complete += 1
         percent_complete = round((players_complete/total_players)*100)
-        logging.info("\n{}% TOTAL DATA PROCESSING COMPLETE.".format(percent_complete))
+        logging.info("\n\n{}% TOTAL DATA PROCESSING COMPLETE.".format(percent_complete))
 
 def process_data_each_round(player,round_i,total_round_i,percentiles_we_care_about):
     # Create a list of all the results from similar round increments.
@@ -172,15 +174,14 @@ def process_data_each_round(player,round_i,total_round_i,percentiles_we_care_abo
     total_round_i = total_round_i - 1
     completion_percentages = [20,40,60,80,100]
     if round((round_i/total_round_i)*100) in completion_percentages:
-        logging.info('Player: {}\t{}% complete.'.format(player.name,round((round_i/total_round_i)*100)))
+        logging.info('\tPlayer: {}\t{}% complete.'.format(player.name,round((round_i/total_round_i)*100)))
     return results
 
 def find_percentile_result_for_round(round_sim_results,percentiles_we_care_about):
     round_percentiles = {}
-    for percentile in range(1, 100):
-        if percentile in percentiles_we_care_about:
-            result = np.percentile(round_sim_results, [percentile])
-            round_percentiles[percentile] = result[0]
+    for percentile in percentiles_we_care_about:
+        result = np.percentile(round_sim_results, [percentile])
+        round_percentiles[percentile] = result[0]
     return round_percentiles
 
 def rearrange_percentile_results(percentile_sim_results,percentiles_we_care_about):

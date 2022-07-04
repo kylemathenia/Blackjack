@@ -1,9 +1,8 @@
-
 import visualizations
 import support
 import logging
 
-def one_player_one_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,multiprocessing=True,save=False,filename_base='one_player_one_table'):
+def singleplayer_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,multiprocessing=True,save=False,filename_base='singleplayer_table'):
     assert(len(table.players) == 1)
     if num_rounds < num_points:
         logging.warning(
@@ -22,10 +21,10 @@ def one_player_one_table(table,num_rounds=1_000,sample_size=1_000,num_points=100
     print('\nSample size: \n{}'.format(sample_size))
     title = 'Basic Strategy - 25 Dollar Hands - 1,2,3 Sigma'
     if save:
-        save_one_player_one_table(x_series,table,sample_size,filename_base=filename_base)
+        save_singleplayer_table(x_series,table,sample_size,filename_base=filename_base)
     visualizations.one_table_one_player(player,x_series,title,save=save,filename_base=filename_base)
 
-def save_one_player_one_table(x_series,table,sample_size,filename_base='one_player_one_table'):
+def save_singleplayer_table(x_series,table,sample_size,filename_base='singleplayer_table'):
     filename=filename_base+'.txt'
     filename = support.add_ts_to_filename(filename)
     with open(filename, 'w') as f:
@@ -37,8 +36,9 @@ def save_one_player_one_table(x_series,table,sample_size,filename_base='one_play
         f.write('\n\nAverage loss per round: \n${:.4f}'.format(player.sim_results.ave_loss_per_round))
         f.write('\n\nSample size: \n{}'.format(sample_size))
 
-
-def multiplayer_one_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,multiprocessing=True,save=False,filename_base='one_player_one_table'):
+def multiplayer_table(table,num_rounds=1_000,sample_size=1_000,num_points=100,multiprocessing=True,save=False,filename_base='multiplayer_table'):
+    """Simulates a multiplayer table. Number of points refers to the number of data points captured during the simulation,
+    the granularity. """
     if num_rounds < num_points:
         logging.warning("\nnum_rounds argument must be greater than or equal num_points argument. Changing to num_points = num_rounds.\n")
         num_points=num_rounds
@@ -60,10 +60,10 @@ def multiplayer_one_table(table,num_rounds=1_000,sample_size=1_000,num_points=10
     print('\nSample size: \n{}'.format(sample_size))
 
     if save:
-        save_multiplayer_one_table(x_series,table,sample_size,filename_base=filename_base)
+        save_multiplayer_table(x_series,table,sample_size,filename_base=filename_base)
     visualizations.strategy_comparison(table.players,x_series,save=save,filename_base=filename_base)
 
-def save_multiplayer_one_table(x_series,table,sample_size,filename_base='multiplayer_one_table'):
+def save_multiplayer_table(x_series,table,sample_size,filename_base='multiplayer_table'):
     filename=filename_base+'.txt'
     filename = support.add_ts_to_filename(filename)
     with open(filename, 'w') as f:

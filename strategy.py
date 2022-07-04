@@ -1,7 +1,6 @@
 
 
 import pandas as pd
-
 from options import ActionOptions as AO
 from options import StrategyOptions,Cards
 pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -30,7 +29,7 @@ def decide_bet(player,shoe,table):
     return change_bet_if_poor(bet,player,table)
 
 def change_bet_if_poor(bet,player,table):
-    # TODO need to make sure to not bet more than is commited with other hands.
+    # TODO need to make sure to not bet more than is committed with other hands.
     if player.money < table.min_bet:
         return 0
     elif bet > player.money:
@@ -144,8 +143,6 @@ def dealer_strategy_action(hand,table):
         return AO.STAND
     else:
         return AO.HIT
-
-
 
 def check_double_down(action,hand,table,player):
     """Checks the action to see if it is a double down variety. Modifies action if double down isn't legal."""

@@ -1,0 +1,1429 @@
+
+########## RESULTS ##########
+
+Round number: 0
+Jake       Ave Money: $4999.93
+Kyle       Ave Money: $5000.15
+Dillon     Ave Money: $4999.84
+Diego      Ave Money: $4998.98
+Jung       Ave Money: $4999.98
+
+Round number: 50
+Jake       Ave Money: $4994.73
+Kyle       Ave Money: $4993.82
+Dillon     Ave Money: $4984.05
+Diego      Ave Money: $4970.27
+Jung       Ave Money: $4974.90
+
+Round number: 100
+Jake       Ave Money: $4987.23
+Kyle       Ave Money: $4992.00
+Dillon     Ave Money: $4959.50
+Diego      Ave Money: $4944.11
+Jung       Ave Money: $4965.34
+
+Round number: 150
+Jake       Ave Money: $4991.04
+Kyle       Ave Money: $4978.99
+Dillon     Ave Money: $4940.23
+Diego      Ave Money: $4915.85
+Jung       Ave Money: $4950.98
+
+Round number: 200
+Jake       Ave Money: $4974.71
+Kyle       Ave Money: $4951.51
+Dillon     Ave Money: $4931.59
+Diego      Ave Money: $4886.34
+Jung       Ave Money: $4939.56
+
+Round number: 250
+Jake       Ave Money: $4970.45
+Kyle       Ave Money: $4940.01
+Dillon     Ave Money: $4915.79
+Diego      Ave Money: $4861.71
+Jung       Ave Money: $4928.57
+
+Round number: 300
+Jake       Ave Money: $4962.19
+Kyle       Ave Money: $4940.07
+Dillon     Ave Money: $4895.18
+Diego      Ave Money: $4835.99
+Jung       Ave Money: $4910.73
+
+Round number: 350
+Jake       Ave Money: $4954.62
+Kyle       Ave Money: $4930.36
+Dillon     Ave Money: $4886.79
+Diego      Ave Money: $4819.86
+Jung       Ave Money: $4913.29
+
+Round number: 400
+Jake       Ave Money: $4948.50
+Kyle       Ave Money: $4917.57
+Dillon     Ave Money: $4873.98
+Diego      Ave Money: $4797.39
+Jung       Ave Money: $4905.14
+
+Round number: 450
+Jake       Ave Money: $4942.04
+Kyle       Ave Money: $4912.76
+Dillon     Ave Money: $4859.01
+Diego      Ave Money: $4770.46
+Jung       Ave Money: $4879.16
+
+Round number: 500
+Jake       Ave Money: $4944.11
+Kyle       Ave Money: $4904.41
+Dillon     Ave Money: $4853.14
+Diego      Ave Money: $4747.99
+Jung       Ave Money: $4875.75
+
+Round number: 550
+Jake       Ave Money: $4946.00
+Kyle       Ave Money: $4887.91
+Dillon     Ave Money: $4835.16
+Diego      Ave Money: $4719.05
+Jung       Ave Money: $4856.44
+
+Round number: 600
+Jake       Ave Money: $4926.77
+Kyle       Ave Money: $4872.00
+Dillon     Ave Money: $4809.95
+Diego      Ave Money: $4691.30
+Jung       Ave Money: $4833.76
+
+Round number: 650
+Jake       Ave Money: $4928.04
+Kyle       Ave Money: $4875.77
+Dillon     Ave Money: $4795.94
+Diego      Ave Money: $4667.49
+Jung       Ave Money: $4820.30
+
+Round number: 700
+Jake       Ave Money: $4914.65
+Kyle       Ave Money: $4875.90
+Dillon     Ave Money: $4772.34
+Diego      Ave Money: $4647.54
+Jung       Ave Money: $4810.23
+
+Round number: 750
+Jake       Ave Money: $4913.04
+Kyle       Ave Money: $4865.68
+Dillon     Ave Money: $4750.46
+Diego      Ave Money: $4625.20
+Jung       Ave Money: $4801.09
+
+Round number: 800
+Jake       Ave Money: $4914.54
+Kyle       Ave Money: $4858.95
+Dillon     Ave Money: $4721.89
+Diego      Ave Money: $4608.25
+Jung       Ave Money: $4788.61
+
+Round number: 850
+Jake       Ave Money: $4910.81
+Kyle       Ave Money: $4858.70
+Dillon     Ave Money: $4713.57
+Diego      Ave Money: $4590.60
+Jung       Ave Money: $4772.10
+
+Round number: 900
+Jake       Ave Money: $4899.77
+Kyle       Ave Money: $4839.88
+Dillon     Ave Money: $4697.12
+Diego      Ave Money: $4564.25
+Jung       Ave Money: $4746.31
+
+Round number: 950
+Jake       Ave Money: $4899.76
+Kyle       Ave Money: $4835.24
+Dillon     Ave Money: $4675.54
+Diego      Ave Money: $4544.91
+Jung       Ave Money: $4736.36
+
+Round number: 1000
+Jake       Ave Money: $4911.77
+Kyle       Ave Money: $4829.60
+Dillon     Ave Money: $4660.50
+Diego      Ave Money: $4530.14
+Jung       Ave Money: $4719.50
+
+Round number: 1050
+Jake       Ave Money: $4899.95
+Kyle       Ave Money: $4815.21
+Dillon     Ave Money: $4641.52
+Diego      Ave Money: $4501.94
+Jung       Ave Money: $4697.98
+
+Round number: 1100
+Jake       Ave Money: $4890.93
+Kyle       Ave Money: $4807.50
+Dillon     Ave Money: $4629.41
+Diego      Ave Money: $4473.93
+Jung       Ave Money: $4674.38
+
+Round number: 1150
+Jake       Ave Money: $4887.52
+Kyle       Ave Money: $4796.81
+Dillon     Ave Money: $4620.61
+Diego      Ave Money: $4447.38
+Jung       Ave Money: $4659.38
+
+Round number: 1200
+Jake       Ave Money: $4883.71
+Kyle       Ave Money: $4788.98
+Dillon     Ave Money: $4599.98
+Diego      Ave Money: $4425.48
+Jung       Ave Money: $4642.21
+
+Round number: 1250
+Jake       Ave Money: $4876.25
+Kyle       Ave Money: $4781.43
+Dillon     Ave Money: $4574.44
+Diego      Ave Money: $4405.86
+Jung       Ave Money: $4628.38
+
+Round number: 1300
+Jake       Ave Money: $4873.41
+Kyle       Ave Money: $4771.85
+Dillon     Ave Money: $4563.26
+Diego      Ave Money: $4393.01
+Jung       Ave Money: $4615.70
+
+Round number: 1350
+Jake       Ave Money: $4873.57
+Kyle       Ave Money: $4776.25
+Dillon     Ave Money: $4551.27
+Diego      Ave Money: $4378.95
+Jung       Ave Money: $4603.95
+
+Round number: 1400
+Jake       Ave Money: $4876.71
+Kyle       Ave Money: $4765.81
+Dillon     Ave Money: $4542.04
+Diego      Ave Money: $4361.91
+Jung       Ave Money: $4594.51
+
+Round number: 1450
+Jake       Ave Money: $4864.25
+Kyle       Ave Money: $4751.60
+Dillon     Ave Money: $4526.94
+Diego      Ave Money: $4342.73
+Jung       Ave Money: $4583.05
+
+Round number: 1500
+Jake       Ave Money: $4854.65
+Kyle       Ave Money: $4745.62
+Dillon     Ave Money: $4511.90
+Diego      Ave Money: $4322.27
+Jung       Ave Money: $4574.02
+
+Round number: 1550
+Jake       Ave Money: $4839.52
+Kyle       Ave Money: $4741.49
+Dillon     Ave Money: $4498.20
+Diego      Ave Money: $4301.57
+Jung       Ave Money: $4557.07
+
+Round number: 1600
+Jake       Ave Money: $4839.74
+Kyle       Ave Money: $4731.05
+Dillon     Ave Money: $4485.25
+Diego      Ave Money: $4277.77
+Jung       Ave Money: $4547.45
+
+Round number: 1650
+Jake       Ave Money: $4836.76
+Kyle       Ave Money: $4727.30
+Dillon     Ave Money: $4468.81
+Diego      Ave Money: $4250.74
+Jung       Ave Money: $4528.16
+
+Round number: 1700
+Jake       Ave Money: $4837.38
+Kyle       Ave Money: $4721.55
+Dillon     Ave Money: $4450.68
+Diego      Ave Money: $4230.05
+Jung       Ave Money: $4522.16
+
+Round number: 1750
+Jake       Ave Money: $4835.14
+Kyle       Ave Money: $4710.74
+Dillon     Ave Money: $4429.38
+Diego      Ave Money: $4209.44
+Jung       Ave Money: $4506.10
+
+Round number: 1800
+Jake       Ave Money: $4815.19
+Kyle       Ave Money: $4690.23
+Dillon     Ave Money: $4407.57
+Diego      Ave Money: $4177.52
+Jung       Ave Money: $4478.43
+
+Round number: 1850
+Jake       Ave Money: $4807.74
+Kyle       Ave Money: $4672.21
+Dillon     Ave Money: $4386.59
+Diego      Ave Money: $4155.24
+Jung       Ave Money: $4463.84
+
+Round number: 1900
+Jake       Ave Money: $4793.80
+Kyle       Ave Money: $4663.95
+Dillon     Ave Money: $4375.51
+Diego      Ave Money: $4123.65
+Jung       Ave Money: $4446.30
+
+Round number: 1950
+Jake       Ave Money: $4789.79
+Kyle       Ave Money: $4661.32
+Dillon     Ave Money: $4367.61
+Diego      Ave Money: $4111.84
+Jung       Ave Money: $4433.07
+
+Round number: 2000
+Jake       Ave Money: $4790.79
+Kyle       Ave Money: $4660.11
+Dillon     Ave Money: $4355.74
+Diego      Ave Money: $4091.20
+Jung       Ave Money: $4417.95
+
+Round number: 2050
+Jake       Ave Money: $4785.70
+Kyle       Ave Money: $4653.48
+Dillon     Ave Money: $4347.70
+Diego      Ave Money: $4069.46
+Jung       Ave Money: $4401.49
+
+Round number: 2100
+Jake       Ave Money: $4788.69
+Kyle       Ave Money: $4647.66
+Dillon     Ave Money: $4333.23
+Diego      Ave Money: $4045.56
+Jung       Ave Money: $4392.52
+
+Round number: 2150
+Jake       Ave Money: $4785.12
+Kyle       Ave Money: $4632.20
+Dillon     Ave Money: $4308.62
+Diego      Ave Money: $4011.46
+Jung       Ave Money: $4366.60
+
+Round number: 2200
+Jake       Ave Money: $4767.24
+Kyle       Ave Money: $4624.84
+Dillon     Ave Money: $4290.52
+Diego      Ave Money: $3984.18
+Jung       Ave Money: $4342.54
+
+Round number: 2250
+Jake       Ave Money: $4760.06
+Kyle       Ave Money: $4618.32
+Dillon     Ave Money: $4272.82
+Diego      Ave Money: $3967.44
+Jung       Ave Money: $4330.50
+
+Round number: 2300
+Jake       Ave Money: $4765.76
+Kyle       Ave Money: $4615.05
+Dillon     Ave Money: $4265.91
+Diego      Ave Money: $3946.59
+Jung       Ave Money: $4318.52
+
+Round number: 2350
+Jake       Ave Money: $4764.60
+Kyle       Ave Money: $4602.06
+Dillon     Ave Money: $4245.19
+Diego      Ave Money: $3924.14
+Jung       Ave Money: $4302.80
+
+Round number: 2400
+Jake       Ave Money: $4744.64
+Kyle       Ave Money: $4585.48
+Dillon     Ave Money: $4221.19
+Diego      Ave Money: $3897.95
+Jung       Ave Money: $4293.55
+
+Round number: 2450
+Jake       Ave Money: $4735.59
+Kyle       Ave Money: $4583.15
+Dillon     Ave Money: $4201.19
+Diego      Ave Money: $3882.68
+Jung       Ave Money: $4281.10
+
+Round number: 2500
+Jake       Ave Money: $4735.99
+Kyle       Ave Money: $4578.27
+Dillon     Ave Money: $4192.61
+Diego      Ave Money: $3866.97
+Jung       Ave Money: $4277.62
+
+Round number: 2550
+Jake       Ave Money: $4745.19
+Kyle       Ave Money: $4582.34
+Dillon     Ave Money: $4184.61
+Diego      Ave Money: $3858.69
+Jung       Ave Money: $4278.35
+
+Round number: 2600
+Jake       Ave Money: $4738.36
+Kyle       Ave Money: $4567.05
+Dillon     Ave Money: $4167.65
+Diego      Ave Money: $3837.39
+Jung       Ave Money: $4260.19
+
+Round number: 2650
+Jake       Ave Money: $4730.71
+Kyle       Ave Money: $4570.80
+Dillon     Ave Money: $4151.10
+Diego      Ave Money: $3815.89
+Jung       Ave Money: $4242.74
+
+Round number: 2700
+Jake       Ave Money: $4732.15
+Kyle       Ave Money: $4564.20
+Dillon     Ave Money: $4142.79
+Diego      Ave Money: $3808.07
+Jung       Ave Money: $4234.16
+
+Round number: 2750
+Jake       Ave Money: $4731.69
+Kyle       Ave Money: $4550.06
+Dillon     Ave Money: $4130.66
+Diego      Ave Money: $3788.69
+Jung       Ave Money: $4233.60
+
+Round number: 2800
+Jake       Ave Money: $4731.40
+Kyle       Ave Money: $4545.50
+Dillon     Ave Money: $4104.61
+Diego      Ave Money: $3767.39
+Jung       Ave Money: $4222.93
+
+Round number: 2850
+Jake       Ave Money: $4728.70
+Kyle       Ave Money: $4541.30
+Dillon     Ave Money: $4084.51
+Diego      Ave Money: $3738.36
+Jung       Ave Money: $4215.93
+
+Round number: 2900
+Jake       Ave Money: $4725.11
+Kyle       Ave Money: $4532.76
+Dillon     Ave Money: $4061.91
+Diego      Ave Money: $3719.12
+Jung       Ave Money: $4196.56
+
+Round number: 2950
+Jake       Ave Money: $4716.77
+Kyle       Ave Money: $4529.66
+Dillon     Ave Money: $4050.20
+Diego      Ave Money: $3704.80
+Jung       Ave Money: $4193.18
+
+Round number: 3000
+Jake       Ave Money: $4721.30
+Kyle       Ave Money: $4522.85
+Dillon     Ave Money: $4041.53
+Diego      Ave Money: $3674.82
+Jung       Ave Money: $4176.55
+
+Round number: 3050
+Jake       Ave Money: $4726.86
+Kyle       Ave Money: $4516.25
+Dillon     Ave Money: $4028.66
+Diego      Ave Money: $3658.05
+Jung       Ave Money: $4170.94
+
+Round number: 3100
+Jake       Ave Money: $4726.10
+Kyle       Ave Money: $4505.44
+Dillon     Ave Money: $4018.22
+Diego      Ave Money: $3644.35
+Jung       Ave Money: $4164.51
+
+Round number: 3150
+Jake       Ave Money: $4721.76
+Kyle       Ave Money: $4500.79
+Dillon     Ave Money: $3999.85
+Diego      Ave Money: $3622.69
+Jung       Ave Money: $4146.05
+
+Round number: 3200
+Jake       Ave Money: $4715.11
+Kyle       Ave Money: $4489.93
+Dillon     Ave Money: $3987.68
+Diego      Ave Money: $3611.32
+Jung       Ave Money: $4134.09
+
+Round number: 3250
+Jake       Ave Money: $4721.50
+Kyle       Ave Money: $4488.55
+Dillon     Ave Money: $3989.25
+Diego      Ave Money: $3595.70
+Jung       Ave Money: $4132.70
+
+Round number: 3300
+Jake       Ave Money: $4714.21
+Kyle       Ave Money: $4470.96
+Dillon     Ave Money: $3973.81
+Diego      Ave Money: $3559.39
+Jung       Ave Money: $4110.54
+
+Round number: 3350
+Jake       Ave Money: $4711.09
+Kyle       Ave Money: $4463.73
+Dillon     Ave Money: $3952.03
+Diego      Ave Money: $3535.35
+Jung       Ave Money: $4088.94
+
+Round number: 3400
+Jake       Ave Money: $4710.32
+Kyle       Ave Money: $4451.26
+Dillon     Ave Money: $3930.60
+Diego      Ave Money: $3518.53
+Jung       Ave Money: $4075.25
+
+Round number: 3450
+Jake       Ave Money: $4708.86
+Kyle       Ave Money: $4434.64
+Dillon     Ave Money: $3916.70
+Diego      Ave Money: $3499.03
+Jung       Ave Money: $4061.32
+
+Round number: 3500
+Jake       Ave Money: $4705.12
+Kyle       Ave Money: $4432.77
+Dillon     Ave Money: $3901.53
+Diego      Ave Money: $3475.50
+Jung       Ave Money: $4040.91
+
+Round number: 3550
+Jake       Ave Money: $4703.85
+Kyle       Ave Money: $4423.40
+Dillon     Ave Money: $3887.72
+Diego      Ave Money: $3458.12
+Jung       Ave Money: $4018.66
+
+Round number: 3600
+Jake       Ave Money: $4698.36
+Kyle       Ave Money: $4412.43
+Dillon     Ave Money: $3874.50
+Diego      Ave Money: $3436.97
+Jung       Ave Money: $4005.39
+
+Round number: 3650
+Jake       Ave Money: $4687.65
+Kyle       Ave Money: $4390.23
+Dillon     Ave Money: $3857.96
+Diego      Ave Money: $3412.81
+Jung       Ave Money: $3981.93
+
+Round number: 3700
+Jake       Ave Money: $4687.34
+Kyle       Ave Money: $4383.81
+Dillon     Ave Money: $3839.06
+Diego      Ave Money: $3388.28
+Jung       Ave Money: $3967.57
+
+Round number: 3750
+Jake       Ave Money: $4668.32
+Kyle       Ave Money: $4372.04
+Dillon     Ave Money: $3816.64
+Diego      Ave Money: $3365.06
+Jung       Ave Money: $3943.38
+
+Round number: 3800
+Jake       Ave Money: $4662.07
+Kyle       Ave Money: $4364.51
+Dillon     Ave Money: $3803.74
+Diego      Ave Money: $3339.53
+Jung       Ave Money: $3930.15
+
+Round number: 3850
+Jake       Ave Money: $4664.54
+Kyle       Ave Money: $4359.89
+Dillon     Ave Money: $3793.72
+Diego      Ave Money: $3319.69
+Jung       Ave Money: $3915.21
+
+Round number: 3900
+Jake       Ave Money: $4667.44
+Kyle       Ave Money: $4359.57
+Dillon     Ave Money: $3778.32
+Diego      Ave Money: $3304.80
+Jung       Ave Money: $3904.50
+
+Round number: 3950
+Jake       Ave Money: $4663.07
+Kyle       Ave Money: $4350.39
+Dillon     Ave Money: $3762.82
+Diego      Ave Money: $3285.62
+Jung       Ave Money: $3882.51
+
+Round number: 4000
+Jake       Ave Money: $4659.41
+Kyle       Ave Money: $4351.26
+Dillon     Ave Money: $3754.11
+Diego      Ave Money: $3270.34
+Jung       Ave Money: $3870.79
+
+Round number: 4050
+Jake       Ave Money: $4650.79
+Kyle       Ave Money: $4339.66
+Dillon     Ave Money: $3736.76
+Diego      Ave Money: $3250.41
+Jung       Ave Money: $3846.12
+
+Round number: 4100
+Jake       Ave Money: $4648.10
+Kyle       Ave Money: $4337.40
+Dillon     Ave Money: $3725.90
+Diego      Ave Money: $3228.72
+Jung       Ave Money: $3830.15
+
+Round number: 4150
+Jake       Ave Money: $4649.84
+Kyle       Ave Money: $4330.31
+Dillon     Ave Money: $3716.79
+Diego      Ave Money: $3213.18
+Jung       Ave Money: $3817.30
+
+Round number: 4200
+Jake       Ave Money: $4644.76
+Kyle       Ave Money: $4315.01
+Dillon     Ave Money: $3707.24
+Diego      Ave Money: $3191.47
+Jung       Ave Money: $3799.11
+
+Round number: 4250
+Jake       Ave Money: $4619.50
+Kyle       Ave Money: $4292.70
+Dillon     Ave Money: $3685.26
+Diego      Ave Money: $3167.93
+Jung       Ave Money: $3783.84
+
+Round number: 4300
+Jake       Ave Money: $4611.04
+Kyle       Ave Money: $4290.44
+Dillon     Ave Money: $3681.61
+Diego      Ave Money: $3145.55
+Jung       Ave Money: $3777.68
+
+Round number: 4350
+Jake       Ave Money: $4615.73
+Kyle       Ave Money: $4281.45
+Dillon     Ave Money: $3669.16
+Diego      Ave Money: $3130.20
+Jung       Ave Money: $3759.46
+
+Round number: 4400
+Jake       Ave Money: $4602.27
+Kyle       Ave Money: $4263.26
+Dillon     Ave Money: $3653.64
+Diego      Ave Money: $3110.18
+Jung       Ave Money: $3738.26
+
+Round number: 4450
+Jake       Ave Money: $4594.98
+Kyle       Ave Money: $4244.56
+Dillon     Ave Money: $3638.24
+Diego      Ave Money: $3082.89
+Jung       Ave Money: $3712.39
+
+Round number: 4500
+Jake       Ave Money: $4587.88
+Kyle       Ave Money: $4240.40
+Dillon     Ave Money: $3620.05
+Diego      Ave Money: $3063.61
+Jung       Ave Money: $3695.78
+
+Round number: 4550
+Jake       Ave Money: $4585.25
+Kyle       Ave Money: $4233.41
+Dillon     Ave Money: $3591.93
+Diego      Ave Money: $3043.28
+Jung       Ave Money: $3680.71
+
+Round number: 4600
+Jake       Ave Money: $4570.88
+Kyle       Ave Money: $4215.76
+Dillon     Ave Money: $3565.54
+Diego      Ave Money: $3017.53
+Jung       Ave Money: $3662.32
+
+Round number: 4650
+Jake       Ave Money: $4564.77
+Kyle       Ave Money: $4213.57
+Dillon     Ave Money: $3562.15
+Diego      Ave Money: $2995.68
+Jung       Ave Money: $3667.53
+
+Round number: 4700
+Jake       Ave Money: $4554.75
+Kyle       Ave Money: $4205.49
+Dillon     Ave Money: $3549.61
+Diego      Ave Money: $2981.59
+Jung       Ave Money: $3648.91
+
+Round number: 4750
+Jake       Ave Money: $4553.96
+Kyle       Ave Money: $4194.00
+Dillon     Ave Money: $3534.11
+Diego      Ave Money: $2962.35
+Jung       Ave Money: $3634.54
+
+Round number: 4800
+Jake       Ave Money: $4538.76
+Kyle       Ave Money: $4187.98
+Dillon     Ave Money: $3519.19
+Diego      Ave Money: $2936.74
+Jung       Ave Money: $3612.01
+
+Round number: 4850
+Jake       Ave Money: $4517.36
+Kyle       Ave Money: $4168.40
+Dillon     Ave Money: $3492.34
+Diego      Ave Money: $2912.69
+Jung       Ave Money: $3594.47
+
+Round number: 4900
+Jake       Ave Money: $4510.64
+Kyle       Ave Money: $4157.43
+Dillon     Ave Money: $3476.25
+Diego      Ave Money: $2884.91
+Jung       Ave Money: $3568.46
+
+Round number: 4950
+Jake       Ave Money: $4510.66
+Kyle       Ave Money: $4153.64
+Dillon     Ave Money: $3462.26
+Diego      Ave Money: $2862.39
+Jung       Ave Money: $3565.22
+
+Round number: 5000
+Jake       Ave Money: $4502.41
+Kyle       Ave Money: $4151.41
+Dillon     Ave Money: $3436.88
+Diego      Ave Money: $2840.66
+Jung       Ave Money: $3552.82
+
+Round number: 5050
+Jake       Ave Money: $4491.09
+Kyle       Ave Money: $4141.98
+Dillon     Ave Money: $3414.38
+Diego      Ave Money: $2825.34
+Jung       Ave Money: $3542.86
+
+Round number: 5100
+Jake       Ave Money: $4492.81
+Kyle       Ave Money: $4140.54
+Dillon     Ave Money: $3399.07
+Diego      Ave Money: $2802.10
+Jung       Ave Money: $3530.01
+
+Round number: 5150
+Jake       Ave Money: $4482.18
+Kyle       Ave Money: $4138.18
+Dillon     Ave Money: $3387.72
+Diego      Ave Money: $2780.00
+Jung       Ave Money: $3520.81
+
+Round number: 5200
+Jake       Ave Money: $4486.73
+Kyle       Ave Money: $4132.07
+Dillon     Ave Money: $3379.40
+Diego      Ave Money: $2769.14
+Jung       Ave Money: $3516.46
+
+Round number: 5250
+Jake       Ave Money: $4473.32
+Kyle       Ave Money: $4131.24
+Dillon     Ave Money: $3358.85
+Diego      Ave Money: $2756.26
+Jung       Ave Money: $3505.96
+
+Round number: 5300
+Jake       Ave Money: $4467.98
+Kyle       Ave Money: $4123.90
+Dillon     Ave Money: $3343.82
+Diego      Ave Money: $2740.35
+Jung       Ave Money: $3486.18
+
+Round number: 5350
+Jake       Ave Money: $4463.68
+Kyle       Ave Money: $4112.11
+Dillon     Ave Money: $3326.74
+Diego      Ave Money: $2718.26
+Jung       Ave Money: $3472.54
+
+Round number: 5400
+Jake       Ave Money: $4463.30
+Kyle       Ave Money: $4100.35
+Dillon     Ave Money: $3319.44
+Diego      Ave Money: $2702.95
+Jung       Ave Money: $3462.54
+
+Round number: 5450
+Jake       Ave Money: $4463.43
+Kyle       Ave Money: $4094.96
+Dillon     Ave Money: $3299.50
+Diego      Ave Money: $2685.47
+Jung       Ave Money: $3449.89
+
+Round number: 5500
+Jake       Ave Money: $4457.61
+Kyle       Ave Money: $4078.04
+Dillon     Ave Money: $3277.81
+Diego      Ave Money: $2663.57
+Jung       Ave Money: $3426.28
+
+Round number: 5550
+Jake       Ave Money: $4456.66
+Kyle       Ave Money: $4074.93
+Dillon     Ave Money: $3266.18
+Diego      Ave Money: $2652.78
+Jung       Ave Money: $3416.46
+
+Round number: 5600
+Jake       Ave Money: $4445.73
+Kyle       Ave Money: $4055.86
+Dillon     Ave Money: $3247.04
+Diego      Ave Money: $2630.05
+Jung       Ave Money: $3399.30
+
+Round number: 5650
+Jake       Ave Money: $4441.98
+Kyle       Ave Money: $4049.79
+Dillon     Ave Money: $3238.32
+Diego      Ave Money: $2615.01
+Jung       Ave Money: $3387.47
+
+Round number: 5700
+Jake       Ave Money: $4444.16
+Kyle       Ave Money: $4042.40
+Dillon     Ave Money: $3230.36
+Diego      Ave Money: $2596.97
+Jung       Ave Money: $3374.41
+
+Round number: 5750
+Jake       Ave Money: $4437.39
+Kyle       Ave Money: $4038.06
+Dillon     Ave Money: $3214.49
+Diego      Ave Money: $2584.34
+Jung       Ave Money: $3358.84
+
+Round number: 5800
+Jake       Ave Money: $4429.98
+Kyle       Ave Money: $4029.49
+Dillon     Ave Money: $3198.95
+Diego      Ave Money: $2570.86
+Jung       Ave Money: $3339.99
+
+Round number: 5850
+Jake       Ave Money: $4427.52
+Kyle       Ave Money: $4022.00
+Dillon     Ave Money: $3183.79
+Diego      Ave Money: $2550.04
+Jung       Ave Money: $3330.45
+
+Round number: 5900
+Jake       Ave Money: $4419.34
+Kyle       Ave Money: $4016.26
+Dillon     Ave Money: $3164.21
+Diego      Ave Money: $2527.01
+Jung       Ave Money: $3321.93
+
+Round number: 5950
+Jake       Ave Money: $4420.88
+Kyle       Ave Money: $4014.04
+Dillon     Ave Money: $3152.89
+Diego      Ave Money: $2510.04
+Jung       Ave Money: $3304.40
+
+Round number: 6000
+Jake       Ave Money: $4410.50
+Kyle       Ave Money: $4006.60
+Dillon     Ave Money: $3147.51
+Diego      Ave Money: $2489.95
+Jung       Ave Money: $3290.53
+
+Round number: 6050
+Jake       Ave Money: $4400.39
+Kyle       Ave Money: $4000.62
+Dillon     Ave Money: $3133.18
+Diego      Ave Money: $2481.00
+Jung       Ave Money: $3283.57
+
+Round number: 6100
+Jake       Ave Money: $4390.45
+Kyle       Ave Money: $3990.94
+Dillon     Ave Money: $3122.68
+Diego      Ave Money: $2466.55
+Jung       Ave Money: $3270.31
+
+Round number: 6150
+Jake       Ave Money: $4380.40
+Kyle       Ave Money: $3974.43
+Dillon     Ave Money: $3100.95
+Diego      Ave Money: $2445.29
+Jung       Ave Money: $3260.44
+
+Round number: 6200
+Jake       Ave Money: $4372.81
+Kyle       Ave Money: $3959.99
+Dillon     Ave Money: $3083.11
+Diego      Ave Money: $2431.71
+Jung       Ave Money: $3249.40
+
+Round number: 6250
+Jake       Ave Money: $4379.85
+Kyle       Ave Money: $3958.03
+Dillon     Ave Money: $3067.49
+Diego      Ave Money: $2415.91
+Jung       Ave Money: $3238.75
+
+Round number: 6300
+Jake       Ave Money: $4371.23
+Kyle       Ave Money: $3938.09
+Dillon     Ave Money: $3056.21
+Diego      Ave Money: $2398.15
+Jung       Ave Money: $3223.43
+
+Round number: 6350
+Jake       Ave Money: $4360.24
+Kyle       Ave Money: $3927.59
+Dillon     Ave Money: $3033.07
+Diego      Ave Money: $2375.18
+Jung       Ave Money: $3204.28
+
+Round number: 6400
+Jake       Ave Money: $4365.64
+Kyle       Ave Money: $3916.16
+Dillon     Ave Money: $3028.79
+Diego      Ave Money: $2365.40
+Jung       Ave Money: $3194.97
+
+Round number: 6450
+Jake       Ave Money: $4352.90
+Kyle       Ave Money: $3898.84
+Dillon     Ave Money: $3013.55
+Diego      Ave Money: $2336.26
+Jung       Ave Money: $3176.36
+
+Round number: 6500
+Jake       Ave Money: $4348.54
+Kyle       Ave Money: $3894.59
+Dillon     Ave Money: $3003.53
+Diego      Ave Money: $2325.60
+Jung       Ave Money: $3161.35
+
+Round number: 6550
+Jake       Ave Money: $4340.55
+Kyle       Ave Money: $3875.40
+Dillon     Ave Money: $2988.06
+Diego      Ave Money: $2312.40
+Jung       Ave Money: $3148.16
+
+Round number: 6600
+Jake       Ave Money: $4331.91
+Kyle       Ave Money: $3868.99
+Dillon     Ave Money: $2976.14
+Diego      Ave Money: $2294.59
+Jung       Ave Money: $3141.55
+
+Round number: 6650
+Jake       Ave Money: $4320.32
+Kyle       Ave Money: $3861.22
+Dillon     Ave Money: $2962.86
+Diego      Ave Money: $2272.05
+Jung       Ave Money: $3129.62
+
+Round number: 6700
+Jake       Ave Money: $4317.02
+Kyle       Ave Money: $3852.90
+Dillon     Ave Money: $2951.70
+Diego      Ave Money: $2253.68
+Jung       Ave Money: $3110.60
+
+Round number: 6750
+Jake       Ave Money: $4310.88
+Kyle       Ave Money: $3847.07
+Dillon     Ave Money: $2939.94
+Diego      Ave Money: $2231.84
+Jung       Ave Money: $3094.43
+
+Round number: 6800
+Jake       Ave Money: $4316.50
+Kyle       Ave Money: $3844.00
+Dillon     Ave Money: $2925.18
+Diego      Ave Money: $2220.45
+Jung       Ave Money: $3086.56
+
+Round number: 6850
+Jake       Ave Money: $4309.90
+Kyle       Ave Money: $3836.56
+Dillon     Ave Money: $2903.29
+Diego      Ave Money: $2198.59
+Jung       Ave Money: $3073.51
+
+Round number: 6900
+Jake       Ave Money: $4301.30
+Kyle       Ave Money: $3839.24
+Dillon     Ave Money: $2898.82
+Diego      Ave Money: $2187.80
+Jung       Ave Money: $3066.18
+
+Round number: 6950
+Jake       Ave Money: $4296.30
+Kyle       Ave Money: $3822.30
+Dillon     Ave Money: $2886.32
+Diego      Ave Money: $2168.82
+Jung       Ave Money: $3051.21
+
+Round number: 7000
+Jake       Ave Money: $4294.38
+Kyle       Ave Money: $3816.40
+Dillon     Ave Money: $2879.56
+Diego      Ave Money: $2158.29
+Jung       Ave Money: $3032.29
+
+Round number: 7050
+Jake       Ave Money: $4289.18
+Kyle       Ave Money: $3805.65
+Dillon     Ave Money: $2865.38
+Diego      Ave Money: $2137.29
+Jung       Ave Money: $3020.12
+
+Round number: 7100
+Jake       Ave Money: $4287.16
+Kyle       Ave Money: $3792.00
+Dillon     Ave Money: $2849.70
+Diego      Ave Money: $2115.50
+Jung       Ave Money: $2998.40
+
+Round number: 7150
+Jake       Ave Money: $4282.81
+Kyle       Ave Money: $3788.38
+Dillon     Ave Money: $2836.06
+Diego      Ave Money: $2093.05
+Jung       Ave Money: $2982.81
+
+Round number: 7200
+Jake       Ave Money: $4272.73
+Kyle       Ave Money: $3781.39
+Dillon     Ave Money: $2820.34
+Diego      Ave Money: $2070.18
+Jung       Ave Money: $2977.46
+
+Round number: 7250
+Jake       Ave Money: $4271.84
+Kyle       Ave Money: $3776.99
+Dillon     Ave Money: $2810.28
+Diego      Ave Money: $2054.04
+Jung       Ave Money: $2969.41
+
+Round number: 7300
+Jake       Ave Money: $4269.96
+Kyle       Ave Money: $3764.26
+Dillon     Ave Money: $2791.00
+Diego      Ave Money: $2033.05
+Jung       Ave Money: $2955.89
+
+Round number: 7350
+Jake       Ave Money: $4259.16
+Kyle       Ave Money: $3761.04
+Dillon     Ave Money: $2776.18
+Diego      Ave Money: $2011.88
+Jung       Ave Money: $2940.76
+
+Round number: 7400
+Jake       Ave Money: $4265.88
+Kyle       Ave Money: $3753.19
+Dillon     Ave Money: $2771.26
+Diego      Ave Money: $1995.83
+Jung       Ave Money: $2930.45
+
+Round number: 7450
+Jake       Ave Money: $4261.06
+Kyle       Ave Money: $3744.21
+Dillon     Ave Money: $2768.90
+Diego      Ave Money: $1978.96
+Jung       Ave Money: $2930.11
+
+Round number: 7500
+Jake       Ave Money: $4255.30
+Kyle       Ave Money: $3736.36
+Dillon     Ave Money: $2752.62
+Diego      Ave Money: $1969.74
+Jung       Ave Money: $2916.78
+
+Round number: 7550
+Jake       Ave Money: $4257.61
+Kyle       Ave Money: $3723.44
+Dillon     Ave Money: $2738.03
+Diego      Ave Money: $1950.45
+Jung       Ave Money: $2909.15
+
+Round number: 7600
+Jake       Ave Money: $4247.38
+Kyle       Ave Money: $3719.76
+Dillon     Ave Money: $2730.64
+Diego      Ave Money: $1934.34
+Jung       Ave Money: $2897.20
+
+Round number: 7650
+Jake       Ave Money: $4244.89
+Kyle       Ave Money: $3706.31
+Dillon     Ave Money: $2718.84
+Diego      Ave Money: $1919.95
+Jung       Ave Money: $2884.50
+
+Round number: 7700
+Jake       Ave Money: $4233.39
+Kyle       Ave Money: $3696.39
+Dillon     Ave Money: $2707.14
+Diego      Ave Money: $1904.34
+Jung       Ave Money: $2876.56
+
+Round number: 7750
+Jake       Ave Money: $4222.46
+Kyle       Ave Money: $3687.16
+Dillon     Ave Money: $2696.89
+Diego      Ave Money: $1889.44
+Jung       Ave Money: $2863.90
+
+Round number: 7800
+Jake       Ave Money: $4218.73
+Kyle       Ave Money: $3674.64
+Dillon     Ave Money: $2683.26
+Diego      Ave Money: $1874.54
+Jung       Ave Money: $2849.60
+
+Round number: 7850
+Jake       Ave Money: $4223.10
+Kyle       Ave Money: $3661.70
+Dillon     Ave Money: $2671.28
+Diego      Ave Money: $1858.64
+Jung       Ave Money: $2841.24
+
+Round number: 7900
+Jake       Ave Money: $4206.74
+Kyle       Ave Money: $3658.91
+Dillon     Ave Money: $2653.20
+Diego      Ave Money: $1838.91
+Jung       Ave Money: $2827.53
+
+Round number: 7950
+Jake       Ave Money: $4196.52
+Kyle       Ave Money: $3638.99
+Dillon     Ave Money: $2635.75
+Diego      Ave Money: $1816.71
+Jung       Ave Money: $2816.09
+
+Round number: 8000
+Jake       Ave Money: $4194.36
+Kyle       Ave Money: $3629.47
+Dillon     Ave Money: $2617.64
+Diego      Ave Money: $1801.94
+Jung       Ave Money: $2808.35
+
+Round number: 8050
+Jake       Ave Money: $4191.11
+Kyle       Ave Money: $3629.93
+Dillon     Ave Money: $2604.76
+Diego      Ave Money: $1783.16
+Jung       Ave Money: $2793.79
+
+Round number: 8100
+Jake       Ave Money: $4191.35
+Kyle       Ave Money: $3627.20
+Dillon     Ave Money: $2603.44
+Diego      Ave Money: $1776.19
+Jung       Ave Money: $2786.89
+
+Round number: 8150
+Jake       Ave Money: $4192.20
+Kyle       Ave Money: $3628.65
+Dillon     Ave Money: $2598.44
+Diego      Ave Money: $1768.55
+Jung       Ave Money: $2777.65
+
+Round number: 8200
+Jake       Ave Money: $4181.81
+Kyle       Ave Money: $3624.66
+Dillon     Ave Money: $2585.61
+Diego      Ave Money: $1755.20
+Jung       Ave Money: $2759.39
+
+Round number: 8250
+Jake       Ave Money: $4186.56
+Kyle       Ave Money: $3619.70
+Dillon     Ave Money: $2573.30
+Diego      Ave Money: $1742.88
+Jung       Ave Money: $2750.41
+
+Round number: 8300
+Jake       Ave Money: $4184.51
+Kyle       Ave Money: $3607.78
+Dillon     Ave Money: $2563.93
+Diego      Ave Money: $1730.30
+Jung       Ave Money: $2739.50
+
+Round number: 8350
+Jake       Ave Money: $4187.15
+Kyle       Ave Money: $3609.74
+Dillon     Ave Money: $2551.66
+Diego      Ave Money: $1725.16
+Jung       Ave Money: $2734.68
+
+Round number: 8400
+Jake       Ave Money: $4195.77
+Kyle       Ave Money: $3601.25
+Dillon     Ave Money: $2536.86
+Diego      Ave Money: $1711.29
+Jung       Ave Money: $2728.60
+
+Round number: 8450
+Jake       Ave Money: $4183.76
+Kyle       Ave Money: $3591.03
+Dillon     Ave Money: $2515.61
+Diego      Ave Money: $1698.01
+Jung       Ave Money: $2716.39
+
+Round number: 8500
+Jake       Ave Money: $4176.77
+Kyle       Ave Money: $3578.12
+Dillon     Ave Money: $2504.99
+Diego      Ave Money: $1677.70
+Jung       Ave Money: $2703.95
+
+Round number: 8550
+Jake       Ave Money: $4173.55
+Kyle       Ave Money: $3571.38
+Dillon     Ave Money: $2497.43
+Diego      Ave Money: $1664.66
+Jung       Ave Money: $2688.89
+
+Round number: 8600
+Jake       Ave Money: $4156.00
+Kyle       Ave Money: $3558.75
+Dillon     Ave Money: $2483.76
+Diego      Ave Money: $1645.70
+Jung       Ave Money: $2679.60
+
+Round number: 8650
+Jake       Ave Money: $4136.43
+Kyle       Ave Money: $3550.07
+Dillon     Ave Money: $2467.56
+Diego      Ave Money: $1630.47
+Jung       Ave Money: $2672.65
+
+Round number: 8700
+Jake       Ave Money: $4139.60
+Kyle       Ave Money: $3549.70
+Dillon     Ave Money: $2452.45
+Diego      Ave Money: $1615.91
+Jung       Ave Money: $2662.22
+
+Round number: 8750
+Jake       Ave Money: $4143.89
+Kyle       Ave Money: $3539.01
+Dillon     Ave Money: $2446.24
+Diego      Ave Money: $1609.24
+Jung       Ave Money: $2651.10
+
+Round number: 8800
+Jake       Ave Money: $4133.44
+Kyle       Ave Money: $3528.55
+Dillon     Ave Money: $2441.76
+Diego      Ave Money: $1603.44
+Jung       Ave Money: $2634.59
+
+Round number: 8850
+Jake       Ave Money: $4128.02
+Kyle       Ave Money: $3517.89
+Dillon     Ave Money: $2429.95
+Diego      Ave Money: $1589.29
+Jung       Ave Money: $2624.45
+
+Round number: 8900
+Jake       Ave Money: $4116.39
+Kyle       Ave Money: $3496.57
+Dillon     Ave Money: $2421.49
+Diego      Ave Money: $1572.99
+Jung       Ave Money: $2608.82
+
+Round number: 8950
+Jake       Ave Money: $4108.32
+Kyle       Ave Money: $3485.81
+Dillon     Ave Money: $2411.19
+Diego      Ave Money: $1556.70
+Jung       Ave Money: $2591.91
+
+Round number: 9000
+Jake       Ave Money: $4111.29
+Kyle       Ave Money: $3480.03
+Dillon     Ave Money: $2404.93
+Diego      Ave Money: $1551.70
+Jung       Ave Money: $2584.38
+
+Round number: 9050
+Jake       Ave Money: $4113.10
+Kyle       Ave Money: $3466.88
+Dillon     Ave Money: $2393.55
+Diego      Ave Money: $1536.80
+Jung       Ave Money: $2577.88
+
+Round number: 9100
+Jake       Ave Money: $4118.94
+Kyle       Ave Money: $3466.60
+Dillon     Ave Money: $2392.56
+Diego      Ave Money: $1522.84
+Jung       Ave Money: $2580.20
+
+Round number: 9150
+Jake       Ave Money: $4124.90
+Kyle       Ave Money: $3456.65
+Dillon     Ave Money: $2377.68
+Diego      Ave Money: $1514.45
+Jung       Ave Money: $2573.69
+
+Round number: 9200
+Jake       Ave Money: $4119.07
+Kyle       Ave Money: $3443.34
+Dillon     Ave Money: $2366.54
+Diego      Ave Money: $1500.62
+Jung       Ave Money: $2559.72
+
+Round number: 9250
+Jake       Ave Money: $4110.45
+Kyle       Ave Money: $3426.20
+Dillon     Ave Money: $2351.61
+Diego      Ave Money: $1493.85
+Jung       Ave Money: $2544.80
+
+Round number: 9300
+Jake       Ave Money: $4108.79
+Kyle       Ave Money: $3419.18
+Dillon     Ave Money: $2336.60
+Diego      Ave Money: $1480.69
+Jung       Ave Money: $2538.66
+
+Round number: 9350
+Jake       Ave Money: $4098.15
+Kyle       Ave Money: $3407.30
+Dillon     Ave Money: $2314.81
+Diego      Ave Money: $1464.16
+Jung       Ave Money: $2525.29
+
+Round number: 9400
+Jake       Ave Money: $4096.93
+Kyle       Ave Money: $3402.29
+Dillon     Ave Money: $2300.65
+Diego      Ave Money: $1448.51
+Jung       Ave Money: $2517.14
+
+Round number: 9450
+Jake       Ave Money: $4086.18
+Kyle       Ave Money: $3392.36
+Dillon     Ave Money: $2290.31
+Diego      Ave Money: $1439.04
+Jung       Ave Money: $2508.55
+
+Round number: 9500
+Jake       Ave Money: $4085.99
+Kyle       Ave Money: $3384.54
+Dillon     Ave Money: $2277.14
+Diego      Ave Money: $1426.83
+Jung       Ave Money: $2494.39
+
+Round number: 9550
+Jake       Ave Money: $4077.50
+Kyle       Ave Money: $3375.00
+Dillon     Ave Money: $2272.99
+Diego      Ave Money: $1415.70
+Jung       Ave Money: $2477.14
+
+Round number: 9600
+Jake       Ave Money: $4074.91
+Kyle       Ave Money: $3367.56
+Dillon     Ave Money: $2258.39
+Diego      Ave Money: $1403.33
+Jung       Ave Money: $2468.79
+
+Round number: 9650
+Jake       Ave Money: $4073.78
+Kyle       Ave Money: $3361.20
+Dillon     Ave Money: $2249.65
+Diego      Ave Money: $1386.40
+Jung       Ave Money: $2455.61
+
+Round number: 9700
+Jake       Ave Money: $4077.47
+Kyle       Ave Money: $3349.01
+Dillon     Ave Money: $2237.62
+Diego      Ave Money: $1370.15
+Jung       Ave Money: $2453.65
+
+Round number: 9750
+Jake       Ave Money: $4077.24
+Kyle       Ave Money: $3345.47
+Dillon     Ave Money: $2222.64
+Diego      Ave Money: $1354.50
+Jung       Ave Money: $2441.96
+
+Round number: 9800
+Jake       Ave Money: $4071.78
+Kyle       Ave Money: $3338.72
+Dillon     Ave Money: $2213.19
+Diego      Ave Money: $1344.90
+Jung       Ave Money: $2425.54
+
+Round number: 9850
+Jake       Ave Money: $4063.41
+Kyle       Ave Money: $3330.09
+Dillon     Ave Money: $2197.71
+Diego      Ave Money: $1332.55
+Jung       Ave Money: $2415.06
+
+Round number: 9900
+Jake       Ave Money: $4062.24
+Kyle       Ave Money: $3320.99
+Dillon     Ave Money: $2184.89
+Diego      Ave Money: $1316.33
+Jung       Ave Money: $2400.38
+
+Round number: 9950
+Jake       Ave Money: $4041.05
+Kyle       Ave Money: $3304.05
+Dillon     Ave Money: $2166.54
+Diego      Ave Money: $1304.79
+Jung       Ave Money: $2374.62
+
+Round number: 10000
+Jake       Ave Money: $4040.50
+Kyle       Ave Money: $3289.57
+Dillon     Ave Money: $2156.53
+Diego      Ave Money: $1286.64
+Jung       Ave Money: $2372.03
+
+
+AVERAGE LOSS PER ROUND
+Jake       $0.0959
+Kyle       $0.1710
+Dillon     $0.2843
+Diego      $0.3713
+Jung       $0.2628
+
+
+PLAYER INFO
+Name: Jake                 Strategy: BASIC                Standard bet: $25                   Starting Money: $5000                
+Name: Kyle                 Strategy: BASIC_STAND_HARD_16  Standard bet: $25                   Starting Money: $5000                
+Name: Dillon               Strategy: BASIC_HIT_HARD_16    Standard bet: $25                   Starting Money: $5000                
+Name: Diego                Strategy: BASIC_NEVER_DD       Standard bet: $25                   Starting Money: $5000                
+Name: Jung                 Strategy: BASIC_NEVER_SPLIT    Standard bet: $25                   Starting Money: $5000                
+
+
+Sample size: 
+1000
