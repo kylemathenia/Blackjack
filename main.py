@@ -32,7 +32,6 @@ def main():
 
     # Play as a player.
     ####################################################################################################################
-
     # Play blackjack as a player.
     jake = Player('Jake', StrategyOptions.BASIC, money=1_000, standard_bet=25, play_as=True)
     multiplayer_table = Table([jake,kyle,dillon,diego,jung], num_decks=5, shoe_shuffle_depth=10, min_bet=25, max_bet=1000,
