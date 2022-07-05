@@ -18,7 +18,6 @@ def main():
 
     # Multi-player sim
     ####################################################################################################################
-
     # Simulate multiple players with different strategies.
     jake = Player('Jake', StrategyOptions.BASIC, money=1_000, standard_bet=25, play_as=False)
     kyle = Player('Kyle', StrategyOptions.BASIC_STAND_HARD_16, money=1_000, standard_bet=25, play_as=False)
