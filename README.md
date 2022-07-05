@@ -1,6 +1,15 @@
 # Blackjack
  
-Simulate blackjack for different table configurations and player strategies. Some interesting takeaways were:
+Simulate blackjack for different table configurations and player strategies. Perhaps give your night at the casino a 
+simulation before you go out. 
+
+## Lifetime of Basic Strategy
+You have roughly a 1/100 shot of playing a lifetime worth of $25 blackjack hands (100,000 rounds) and actually coming out 
+ahead. Not great odds, but better than I would have guessed. 
+
+![alt text](output/oneplayer_onetable_150krounds_5kmoney1655298090.039737.png)
+
+Some interesting takeaways were:
 1) How slowly you lose money playing perfect basic strategy. 
 2) How much quicker you lose money if you play basic strategy just a little bit wrong.
 3) How much quicker you lose money if you are close to bankrupt, or don't bring a decent bank roll. 
