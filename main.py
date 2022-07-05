@@ -5,6 +5,7 @@ from options import StrategyOptions
 import simulations
 
 def main():
+    # Single-player sim
     ####################################################################################################################
     # Create a player.
     jake = Player('Jake', StrategyOptions.BASIC, money=1_000, standard_bet=25, play_as=False)
@@ -15,6 +16,7 @@ def main():
     simulations.singleplayer_table(singleplayer_table,num_rounds=1_000,sample_size=1_000,num_points=200,
                                    multiprocessing=True,save=True,filename_base='single-player')
 
+    # Multi-player sim
     ####################################################################################################################
 
     # Simulate multiple players with different strategies.
@@ -29,6 +31,7 @@ def main():
     simulations.multiplayer_table(multiplayer_table,num_rounds=1_000,sample_size=1_000,num_points=200,
                                   multiprocessing=True,save=False,filename_base='multi-player')
 
+    # Play as a player.
     ####################################################################################################################
 
     # Play blackjack as a player.
