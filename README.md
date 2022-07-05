@@ -11,9 +11,8 @@ ahead. Not great odds, but better than I would have guessed.
 
 ## Other Interesting Takeaways
 1) How slowly you lose money playing perfect basic strategy. 
-2) How much quicker you lose money if you play basic strategy just a little bit wrong.
-3) How much quicker you lose money if you are close to bankrupt, or don't bring a decent bank roll. 
-4) You have roughly a 1/100 shot of playing a lifetime worth of $25 blackjack hands (100,000 rounds) and actually coming out ahead. Not great odds, but better than I would have guessed. 
+2) How much quicker you lose money if you play basic strategy just a little wrong.
+3) How much quicker you lose money if you are close to bankrupt, or don't bring a decent bankroll. 
 
 Playing $25 hands, the loss rate is:
 - Basic strategy:                     $0.155 per round
