@@ -6,7 +6,7 @@ Simulate blackjack for different table configurations and player strategies. Som
 
 ![alt text](output/oneplayer_onetable_150krounds_5kmoney1655298090.039737.png)
 
-![alt text](output/one_player_one_table1655155176.252045.png)
+![alt text](output/one_player_one_table1655153761.20704.png)
 
 Notice how the median player's money wicks down if they are close to zero. Can't recover once you are bankrupt.
 
