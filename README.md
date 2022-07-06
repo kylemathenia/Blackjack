@@ -32,6 +32,8 @@ Per $1 bet, that is a loss rate of:
 
 Notice how the median player's money wicks down if they are close to zero. Can't recover once you are bankrupt. Bring enough money so that your loss rate stays low. 
 
+
+
 ![alt text](output/one_player_one_table1655153761.20704.png)
 
 ![alt text](output/one_player_one_table1655155176.252045.png)
